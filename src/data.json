@@ -1,0 +1,1078 @@
+{
+    "nodes": [
+        {
+            "id": 841,
+            "name": "金窍心",
+            "size": 6
+        },
+        {
+            "id": 839,
+            "name": "槐荫鬼",
+            "size": 6
+        },
+        {
+            "id": 838,
+            "name": "饮民血",
+            "size": 6
+        },
+        {
+            "id": 834,
+            "name": "地巫祝",
+            "size": 6
+        },
+        {
+            "id": 836,
+            "name": "勿查我",
+            "size": 6
+        },
+        {
+            "id": 832,
+            "name": "应帝王",
+            "size": 6
+        },
+        {
+            "id": 837,
+            "name": "金兽羽",
+            "size": 6
+        },
+        {
+            "id": 835,
+            "name": "天金胄",
+            "size": 6
+        },
+        {
+            "id": 833,
+            "name": "金销洞",
+            "size": 6
+        },
+        {
+            "id": 831,
+            "name": "望商锋",
+            "size": 6
+        },
+        {
+            "id": 829,
+            "name": "湖月秋",
+            "size": 6
+        },
+        {
+            "id": 827,
+            "name": "背南行",
+            "size": 6
+        },
+        {
+            "id": 825,
+            "name": "谒天门",
+            "size": 6
+        },
+        {
+            "id": 823,
+            "name": "天下明",
+            "size": 6
+        },
+        {
+            "id": 821,
+            "name": "位从专",
+            "size": 6
+        },
+        {
+            "id": 819,
+            "name": "见查语",
+            "size": 6
+        },
+        {
+            "id": 817,
+            "name": "木成方",
+            "size": 6
+        },
+        {
+            "id": 815,
+            "name": "君蹈危",
+            "size": 6
+        },
+        {
+            "id": 813,
+            "name": "隼就栖",
+            "size": 6
+        },
+        {
+            "id": 811,
+            "name": "潇重林",
+            "size": 6
+        },
+        {
+            "id": 809,
+            "name": "帝观元",
+            "size": 6
+        },
+        {
+            "id": 807,
+            "name": "余养性",
+            "size": 6
+        },
+        {
+            "id": 805,
+            "name": "乙木全",
+            "size": 6
+        },
+        {
+            "id": 803,
+            "name": "溪上翁",
+            "size": 6
+        },
+        {
+            "id": 801,
+            "name": "长云暗",
+            "size": 6
+        },
+        {
+            "id": 799,
+            "name": "仪对影",
+            "size": 6
+        },
+        {
+            "id": 797,
+            "name": "泾龙王",
+            "size": 6
+        },
+        {
+            "id": 795,
+            "name": "据岭中",
+            "size": 6
+        },
+        {
+            "id": 793,
+            "name": "香俱沉",
+            "size": 6
+        },
+        {
+            "id": 791,
+            "name": "恨江去",
+            "size": 6
+        },
+        {
+            "id": 789,
+            "name": "洞泉声",
+            "size": 6
+        },
+        {
+            "id": 787,
+            "name": "清夕雨",
+            "size": 6
+        },
+        {
+            "id": 785,
+            "name": "如重浊",
+            "size": 6
+        },
+        {
+            "id": 783,
+            "name": "丑癸藏",
+            "size": 6
+        },
+        {
+            "id": 781,
+            "name": "洗劫露",
+            "size": 6
+        },
+        {
+            "id": 779,
+            "name": "归流处",
+            "size": 6
+        },
+        {
+            "id": 777,
+            "name": "朝寒雨",
+            "size": 6
+        },
+        {
+            "id": 775,
+            "name": "合黎渊",
+            "size": 6
+        },
+        {
+            "id": 773,
+            "name": "赤断镞",
+            "size": 6
+        },
+        {
+            "id": 771,
+            "name": "大离书",
+            "size": 6
+        },
+        {
+            "id": 769,
+            "name": "参疑室",
+            "size": 6
+        },
+        {
+            "id": 767,
+            "name": "白樆心",
+            "size": 6
+        },
+        {
+            "id": 765,
+            "name": "心期焚",
+            "size": 6
+        },
+        {
+            "id": 763,
+            "name": "乌从欲",
+            "size": 6
+        },
+        {
+            "id": 761,
+            "name": "雉离行",
+            "size": 6
+        },
+        {
+            "id": 759,
+            "name": "愚赶山",
+            "size": 6
+        },
+        {
+            "id": 757,
+            "name": "受抚顶",
+            "size": 6
+        },
+        {
+            "id": 755,
+            "name": "玄羊子",
+            "size": 6
+        },
+        {
+            "id": 753,
+            "name": "青宣岳",
+            "size": 6
+        },
+        {
+            "id": 751,
+            "name": "伏青山",
+            "size": 6
+        },
+        {
+            "id": 749,
+            "name": "上岩神",
+            "size": 6
+        },
+        {
+            "id": 747,
+            "name": "观地冥",
+            "size": 6
+        },
+        {
+            "id": 745,
+            "name": "清元风",
+            "size": 6
+        },
+        {
+            "id": 743,
+            "name": "绕东山",
+            "size": 6
+        },
+        {
+            "id": 741,
+            "name": "抱石眠",
+            "size": 6
+        },
+        {
+            "id": 739,
+            "name": "松上雪",
+            "size": 6
+        },
+        {
+            "id": 737,
+            "name": "入清听",
+            "size": 6
+        },
+        {
+            "id": 735,
+            "name": "祢水寒",
+            "size": 6
+        },
+        {
+            "id": 733,
+            "name": "好功禄",
+            "size": 6
+        },
+        {
+            "id": 731,
+            "name": "罗刹海",
+            "size": 6
+        },
+        {
+            "id": 729,
+            "name": "不空劫",
+            "size": 6
+        },
+        {
+            "id": 727,
+            "name": "千百身",
+            "size": 6
+        },
+        {
+            "id": 725,
+            "name": "明心筵",
+            "size": 6
+        },
+        {
+            "id": 723,
+            "name": "东羽山",
+            "size": 6
+        },
+        {
+            "id": 721,
+            "name": "西天塬",
+            "size": 6
+        },
+        {
+            "id": 719,
+            "name": "南惆水",
+            "size": 6
+        },
+        {
+            "id": 717,
+            "name": "北漠庭",
+            "size": 6
+        },
+        {
+            "id": 715,
+            "name": "绛魂闻",
+            "size": 6
+        },
+        {
+            "id": 713,
+            "name": "玉中人",
+            "size": 6
+        },
+        {
+            "id": 711,
+            "name": "青玉崖",
+            "size": 6
+        },
+        {
+            "id": 709,
+            "name": "白玉盘",
+            "size": 6
+        },
+        {
+            "id": 707,
+            "name": "间道锦",
+            "size": 6
+        },
+        {
+            "id": 705,
+            "name": "道合真",
+            "size": 6
+        },
+        {
+            "id": 358,
+            "name": "虹霞",
+            "size": 6
+        },
+        {
+            "id": 356,
+            "name": "剑",
+            "size": 7
+        },
+        {
+            "id": 354,
+            "name": "下？",
+            "size": 7
+        },
+        {
+            "id": 352,
+            "name": "上仪",
+            "size": 7
+        },
+        {
+            "id": 350,
+            "name": "谪",
+            "size": 7
+        },
+        {
+            "id": 348,
+            "name": "寒",
+            "size": 7
+        },
+        {
+            "id": 346,
+            "name": "煞",
+            "size": 7
+        },
+        {
+            "id": 344,
+            "name": "紫",
+            "size": 7
+        },
+        {
+            "id": 342,
+            "name": "邃",
+            "size": 7
+        },
+        {
+            "id": 340,
+            "name": "晞",
+            "size": 7
+        },
+        {
+            "id": 338,
+            "name": "瑞",
+            "size": 7
+        },
+        {
+            "id": 336,
+            "name": "华",
+            "size": 7
+        },
+        {
+            "id": 334,
+            "name": "清",
+            "size": 7
+        },
+        {
+            "id": 332,
+            "name": "都卫",
+            "size": 7
+        },
+        {
+            "id": 330,
+            "name": "全丹",
+            "size": 7
+        },
+        {
+            "id": 328,
+            "name": "衡祝",
+            "size": 7
+        },
+        {
+            "id": 326,
+            "name": "玉真",
+            "size": 7
+        },
+        {
+            "id": 324,
+            "name": "身夔",
+            "size": 7
+        },
+        {
+            "id": 322,
+            "name": "司天",
+            "size": 7
+        },
+        {
+            "id": 320,
+            "name": "上巫",
+            "size": 7
+        },
+        {
+            "id": 318,
+            "name": "修越",
+            "size": 7
+        },
+        {
+            "id": 316,
+            "name": "并鸺",
+            "size": 7
+        },
+        {
+            "id": 314,
+            "name": "归",
+            "size": 7
+        },
+        {
+            "id": 312,
+            "name": "宣",
+            "size": 7
+        },
+        {
+            "id": 206,
+            "name": "青宣",
+            "size": 7
+        },
+        {
+            "id": 310,
+            "name": "戊",
+            "size": 7
+        },
+        {
+            "id": 308,
+            "name": "宝",
+            "size": 7
+        },
+        {
+            "id": 306,
+            "name": "艮",
+            "size": 7
+        },
+        {
+            "id": 304,
+            "name": "并",
+            "size": 7
+        },
+        {
+            "id": 302,
+            "name": "灴",
+            "size": 7
+        },
+        {
+            "id": 300,
+            "name": "牡",
+            "size": 7
+        },
+        {
+            "id": 298,
+            "name": "真",
+            "size": 7
+        },
+        {
+            "id": 297,
+            "name": "真",
+            "size": 7
+        },
+        {
+            "id": 296,
+            "name": "离",
+            "size": 7
+        },
+        {
+            "id": 294,
+            "name": "合",
+            "size": 7
+        },
+        {
+            "id": 292,
+            "name": "府",
+            "size": 7
+        },
+        {
+            "id": 290,
+            "name": "牝",
+            "size": 7
+        },
+        {
+            "id": 288,
+            "name": "渌",
+            "size": 7
+        },
+        {
+            "id": 286,
+            "name": "坎",
+            "size": 7
+        },
+        {
+            "id": 276,
+            "name": "齐",
+            "size": 7
+        },
+        {
+            "id": 266,
+            "name": "库",
+            "size": 7
+        },
+        {
+            "id": 262,
+            "name": "逍",
+            "size": 7
+        },
+        {
+            "id": 258,
+            "name": "兑",
+            "size": 7
+        },
+        {
+            "id": 256,
+            "name": "庚",
+            "size": 7
+        },
+        {
+            "id": 254,
+            "name": "土",
+            "size": 7
+        },
+        {
+            "id": 252,
+            "name": "火",
+            "size": 7
+        },
+        {
+            "id": 250,
+            "name": "水",
+            "size": 7
+        },
+        {
+            "id": 246,
+            "name": "集",
+            "size": 7
+        },
+        {
+            "id": 242,
+            "name": "正",
+            "size": 7
+        },
+        {
+            "id": 238,
+            "name": "更",
+            "size": 7
+        },
+        {
+            "id": 234,
+            "name": "？",
+            "size": 7
+        },
+        {
+            "id": 230,
+            "name": "角",
+            "size": 7
+        },
+        {
+            "id": 228,
+            "name": "木",
+            "size": 7
+        },
+        {
+            "id": 226,
+            "name": "金",
+            "size": 7
+        },
+        {
+            "id": 224,
+            "name": "元磁",
+            "size": 7
+        },
+        {
+            "id": 222,
+            "name": "霄雷",
+            "size": 7
+        },
+        {
+            "id": 220,
+            "name": "玄雷",
+            "size": 7
+        },
+        {
+            "id": 218,
+            "name": "少阴",
+            "size": 7
+        },
+        {
+            "id": 216,
+            "name": "少阳",
+            "size": 7
+        },
+        {
+            "id": 214,
+            "name": "厥阴",
+            "size": 7
+        },
+        {
+            "id": 212,
+            "name": "明阳",
+            "size": 7
+        },
+        {
+            "id": 210,
+            "name": "太阴",
+            "size": 7
+        },
+        {
+            "id": 208,
+            "name": "太阳",
+            "size": 7
+        },
+        {
+            "id": 204,
+            "name": "五德",
+            "size": 8
+        },
+        {
+            "id": 202,
+            "name": "十二炁",
+            "size": 8
+        },
+        {
+            "id": 200,
+            "name": "并古",
+            "size": 8
+        },
+        {
+            "id": 198,
+            "name": "阴阳",
+            "size": 8
+        }
+    ],
+    "links": [
+        {
+            "source": 198,
+            "target": 212
+        },
+        {
+            "source": 198,
+            "target": 216
+        },
+        {
+            "source": 198,
+            "target": 214
+        },
+        {
+            "source": 198,
+            "target": 218
+        },
+        {
+            "source": 198,
+            "target": 210
+        },
+        {
+            "source": 198,
+            "target": 208
+        },
+        {
+            "source": 204,
+            "target": 226
+        },
+        {
+            "source": 204,
+            "target": 228
+        },
+        {
+            "source": 204,
+            "target": 254
+        },
+        {
+            "source": 204,
+            "target": 252
+        },
+        {
+            "source": 204,
+            "target": 250
+        },
+        {
+            "source": 202,
+            "target": 352
+        },
+        {
+            "source": 202,
+            "target": 350
+        },
+        {
+            "source": 202,
+            "target": 348
+        },
+        {
+            "source": 202,
+            "target": 346
+        },
+        {
+            "source": 202,
+            "target": 344
+        },
+        {
+            "source": 202,
+            "target": 342
+        },
+        {
+            "source": 202,
+            "target": 340
+        },
+        {
+            "source": 202,
+            "target": 338
+        },
+        {
+            "source": 202,
+            "target": 336
+        },
+        {
+            "source": 202,
+            "target": 334
+        },
+        {
+            "source": 202,
+            "target": 354
+        },
+        {
+            "source": 202,
+            "target": 297
+        },
+        {
+            "source": 200,
+            "target": 332
+        },
+        {
+            "source": 200,
+            "target": 330
+        },
+        {
+            "source": 200,
+            "target": 328
+        },
+        {
+            "source": 200,
+            "target": 326
+        },
+        {
+            "source": 200,
+            "target": 324
+        },
+        {
+            "source": 200,
+            "target": 322
+        },
+        {
+            "source": 200,
+            "target": 320
+        },
+        {
+            "source": 200,
+            "target": 318
+        },
+        {
+            "source": 200,
+            "target": 316
+        },
+        {
+            "source": 254,
+            "target": 306
+        },
+        {
+            "source": 254,
+            "target": 308
+        },
+        {
+            "source": 254,
+            "target": 310
+        },
+        {
+            "source": 254,
+            "target": 312
+        },
+        {
+            "source": 254,
+            "target": 314
+        },
+        {
+            "source": 254,
+            "target": 206
+        },
+        {
+            "source": 252,
+            "target": 296
+        },
+        {
+            "source": 252,
+            "target": 298
+        },
+        {
+            "source": 252,
+            "target": 300
+        },
+        {
+            "source": 252,
+            "target": 302
+        },
+        {
+            "source": 252,
+            "target": 304
+        },
+        {
+            "source": 226,
+            "target": 276
+        },
+        {
+            "source": 226,
+            "target": 266
+        },
+        {
+            "source": 226,
+            "target": 262
+        },
+        {
+            "source": 226,
+            "target": 258
+        },
+        {
+            "source": 226,
+            "target": 256
+        },
+        {
+            "source": 250,
+            "target": 286
+        },
+        {
+            "source": 250,
+            "target": 288
+        },
+        {
+            "source": 250,
+            "target": 290
+        },
+        {
+            "source": 250,
+            "target": 292
+        },
+        {
+            "source": 250,
+            "target": 294
+        },
+        {
+            "source": 228,
+            "target": 242
+        },
+        {
+            "source": 228,
+            "target": 238
+        },
+        {
+            "source": 228,
+            "target": 234
+        },
+        {
+            "source": 228,
+            "target": 230
+        },
+        {
+            "source": 228,
+            "target": 246
+        },
+        {
+            "source": 212,
+            "target": 825
+        },
+        {
+            "source": 212,
+            "target": 823
+        },
+        {
+            "source": 212,
+            "target": 815
+        },
+        {
+            "source": 212,
+            "target": 809
+        },
+        {
+            "source": 212,
+            "target": 773
+        },
+        {
+            "source": 286,
+            "target": 791
+        },
+        {
+            "source": 286,
+            "target": 797
+        },
+        {
+            "source": 286,
+            "target": 795
+        },
+        {
+            "source": 286,
+            "target": 803
+        },
+        {
+            "source": 286,
+            "target": 801
+        },
+        {
+            "source": 288,
+            "target": 789
+        },
+        {
+            "source": 288,
+            "target": 787
+        },
+        {
+            "source": 288,
+            "target": 785
+        },
+        {
+            "source": 288,
+            "target": 783
+        },
+        {
+            "source": 288,
+            "target": 781
+        },
+        {
+            "source": 206,
+            "target": 755
+        },
+        {
+            "source": 206,
+            "target": 753
+        },
+        {
+            "source": 206,
+            "target": 751
+        },
+        {
+            "source": 206,
+            "target": 749
+        },
+        {
+            "source": 206,
+            "target": 747
+        },
+        {
+            "source": 332,
+            "target": 723
+        },
+        {
+            "source": 332,
+            "target": 721
+        },
+        {
+            "source": 332,
+            "target": 719
+        },
+        {
+            "source": 332,
+            "target": 717
+        },
+        {
+            "source": 332,
+            "target": 715
+        },
+        {
+            "source": 326,
+            "target": 713
+        },
+        {
+            "source": 326,
+            "target": 711
+        },
+        {
+            "source": 326,
+            "target": 709
+        },
+        {
+            "source": 326,
+            "target": 707
+        },
+        {
+            "source": 326,
+            "target": 705
+        },
+        {
+            "source": 320,
+            "target": 839
+        },
+        {
+            "source": 320,
+            "target": 836
+        },
+        {
+            "source": 320,
+            "target": 834
+        },
+        {
+            "source": 320,
+            "target": 838
+        },
+        {
+            "source": 320,
+            "target": 832
+        }
+    ]
+}

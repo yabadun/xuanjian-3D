@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>读取文本文件</title>
+</head>
+
+<body>
+    <input type="file" accept=".txt" id="fileInput">
+    <div id="output"></div>
+
+    <script>
+        // 定义读取文件的函数
+        function readTxtFile(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+
+                reader.onload = (e) => {
+                    const text = e.target.result;
+                    const lines = text.split('\n');
+                    resolve(lines);
+                };
+
+                reader.onerror = (e) => reject(e);
+                reader.readAsText(file, 'UTF-8'); // 可以指定编码，比如 'GB2312' 或 'UTF-8'
+            });
+        }
+
+        // 获取DOM元素
+        const fileInput = document.getElementById('fileInput');
+        const output = document.getElementById('output');
+
+        // 添加文件选择事件监听
+        fileInput.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            try {
+                // 读取文件内容
+                const lines = await readTxtFile(file);
+
+                // 显示内容
+                // output.innerHTML = lines
+                //     .map((line, index) => `<p>第${index + 1}行: ${line}</p>`)
+                //     .join('');
+
+                // 如果只想提取【】『』《》中的内容
+                const bracketContent = [...new Set(lines
+                    .map(line => {
+                        const matches = line.match(/(【|『|《)(.*?)(】|』|》)/g);
+                        return matches ? matches.map(m => m.slice(1, -1)) : [];
+                    })
+                    .flat()
+                    .filter(Boolean))];
+
+                output.innerHTML = bracketContent
+                    .map((content, index) => `${content}<br/>`)
+                    .join('');
+                // 打印【】中的内容
+                console.log('提取的【】内容：', bracketContent);
+
+            } catch (error) {
+                console.error('读取文件失败:', error);
+                output.innerHTML = `<p style="color: red">读取文件失败: ${error.message}</p>`;
+            }
+        });
+    </script>
+</body>
+
+</html>
