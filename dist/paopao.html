@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circles Layout with SVG</title>
+    <style>
+        .big-container {
+            position: relative;
+            width: 2700px;
+            height: 2700px;
+            margin: auto;
+            background-color: black;
+            border-radius: 50%;
+            font-family: STXingkai;
+            box-shadow: inset 0 0 400px white;
+        }
+
+        .container {
+            position: absolute;
+            width: 900px;
+            height: 900px;
+            margin: auto;
+            background-color: black;
+            border-radius: 50%;
+            /* box-shadow: inset 0 0 40px gold; */
+            /* transform: translate(-50%, -50%); */
+            /* animation: rotate 10s linear infinite; */
+        }
+
+        .outer-circle {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            margin: 100px auto;
+            background-color: black;
+            border-radius: 50%;
+            /* box-shadow: inset 0 0 40px gold; */
+        }
+
+        .main-circle {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: transparent;
+            border-radius: 50%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            color: #fff;
+            align-content: center;
+            /* 添加以下属性实现文字居中 */
+            display: flex;
+            justify-content: center;
+            /* box-shadow: inset 0 0 40px gold; */
+            align-items: center;
+        }
+
+        .small-circle {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: transparent;
+            border-radius: 50%;
+            font-size: 24px;
+            color: #fff;
+            /* box-shadow: inset 0 0 20px gold; */
+            /* 添加以下属性实现文字居中 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* animation: rotate 3s linear infinite; */
+            /* transform-origin: 100px 100px; */
+        }
+
+        @keyframes rotate {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        .box-shadow-j {
+            box-shadow: inset 0 0 40px rgba(255, 215, 0, 0.5);
+        }
+
+        .box-shadow-s {
+            box-shadow: inset 0 0 40px rgba(173, 216, 230, 0.5);
+        }   
+
+        .box-shadow-m {
+            box-shadow: inset 0 0 40px rgba(34, 139, 34, 0.5);
+        }
+
+        .box-shadow-h {
+            box-shadow: inset 0 0 40px rgba(255, 69, 0, 0.5);
+        }
+
+        .box-shadow-t {
+            box-shadow: inset 0 0 40px rgba(205, 133, 63, 0.5);
+        }
+
+        .circle1 {
+            left: calc(150px + 100px * cos(18deg) - 50px);
+            top: calc(150px + 100px * sin(18deg) - 50px);
+        }
+
+        .circle2 {
+            left: calc(150px + 100px * cos(90deg) - 50px);
+            top: calc(150px + 100px * sin(90deg) - 50px);
+        }
+
+        .circle3 {
+            left: calc(150px + 100px * cos(162deg) - 50px);
+            top: calc(150px + 100px * sin(162deg) - 50px);
+        }
+
+        .circle4 {
+            left: calc(150px + 100px * cos(234deg) - 50px);
+            top: calc(150px + 100px * sin(234deg) - 50px);
+        }
+
+        .circle5 {
+            left: calc(150px + 100px * cos(306deg) - 50px);
+            top: calc(150px + 100px * sin(306deg) - 50px);
+        }
+
+        .container-h {
+            left: calc(1350px + 900px * cos(18deg) - 450px);
+            top: calc(1350px + 900px * sin(18deg) - 450px);
+        }
+
+        .container-t {
+            left: calc(1350px + 900px * cos(90deg) - 450px);
+            top: calc(1350px + 900px * sin(90deg) - 450px);
+        }
+
+        .container-s {
+            left: calc(1350px + 900px * cos(162deg) - 450px);
+            top: calc(1350px + 900px * sin(162deg) - 450px);
+        }
+
+        .container-j {
+            left: calc(1350px + 900px * cos(234deg) - 450px);
+            top: calc(1350px + 900px * sin(234deg) - 450px);
+        }
+
+        .container-m {
+            left: calc(1350px + 900px * cos(306deg) - 450px);
+            top: calc(1350px + 900px * sin(306deg) - 450px);
+        }
+
+        .container1 {
+            left: calc(450px + 300px * cos(18deg) - 150px);
+            top: calc(450px + 300px * sin(18deg) - 250px);
+        }
+
+        .container2 {
+            left: calc(450px + 300px * cos(90deg) - 150px);
+            top: calc(450px + 300px * sin(90deg) - 250px);
+        }
+
+        .container3 {
+            left: calc(450px + 300px * cos(162deg) - 150px);
+            top: calc(450px + 300px * sin(162deg) - 250px);
+        }
+
+        .container4 {
+            left: calc(450px + 300px * cos(234deg) - 150px);
+            top: calc(450px + 300px * sin(234deg) - 250px);
+        }
+
+        .container5 {
+            left: calc(450px + 300px * cos(306deg) - 150px);
+            top: calc(450px + 300px * sin(306deg) - 250px);
+        }
+
+        .container-tu-1 {
+            left: calc(450px + 300px * cos(0deg) - 150px);
+            top: calc(450px + 300px * sin(0deg) - 250px);
+        }
+
+        .container-tu-2 {
+            left: calc(450px + 300px * cos(60deg) - 150px);
+            top: calc(450px + 300px * sin(60deg) - 250px);
+        }
+
+        .container-tu-3 {
+            left: calc(450px + 300px * cos(120deg) - 150px);
+            top: calc(450px + 300px * sin(120deg) - 250px);
+        }
+
+        .container-tu-4 {
+            left: calc(450px + 300px * cos(180deg) - 150px);
+            top: calc(450px + 300px * sin(180deg) - 250px);
+        }
+
+        .container-tu-5 {
+            left: calc(450px + 300px * cos(240deg) - 150px);
+            top: calc(450px + 300px * sin(240deg) - 250px);
+        }
+
+        .container-tu-6 {
+            left: calc(450px + 300px * cos(300deg) - 150px);
+            top: calc(450px + 300px * sin(300deg) - 250px);
+        }
+
+        /* 添加粒子容器 */
+        .particle-container {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            left: 350px;
+            top: 350px;
+        }
+
+        /* 增强版粒子效果 */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(to right, gold, #ffd700);
+            border-radius: 50%;
+            filter: blur(1px);
+            box-shadow: 0 0 10px gold;
+            animation: particleAnimation 3s infinite;
+        }
+
+
+        /* 创建多个粒子并设置不同的初始位置和动画延迟 */
+        .particle:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .particle:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .particle:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .particle:nth-child(4) {
+            animation-delay: 0.9s;
+        }
+
+        .particle:nth-child(5) {
+            animation-delay: 1.2s;
+        }
+
+        .particle:nth-child(6) {
+            animation-delay: 1.5s;
+        }
+
+        .particle:nth-child(7) {
+            animation-delay: 1.8s;
+        }
+
+        .particle:nth-child(8) {
+            animation-delay: 2.1s;
+        }
+
+        @keyframes particleAnimation {
+            0% {
+                transform: translate(50px, 50px) rotate(0deg) translateX(0) scale(1);
+                opacity: 1;
+                filter: blur(1px);
+            }
+
+            50% {
+                transform: translate(50px, 50px) rotate(180deg) translateX(30px) scale(0.5);
+                opacity: 0.5;
+                filter: blur(2px);
+            }
+
+            100% {
+                transform: translate(50px, 50px) rotate(360deg) translateX(50px) scale(0);
+                opacity: 0;
+                filter: blur(3px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="big-container">
+        <div class="small-circle" style="width: 200px;height: 200px;left: 1250px;top: 1250px;box-shadow: inset 0 0 40px white;">五德</div>
+        <div class="container container-j box-shadow-j">
+            <!-- <div class="particle-container">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div> -->
+            <div class="small-circle box-shadow-j" style="left: 400px;top: 400px;">金</div>
+            <div class="outer-circle container1  box-shadow-j">
+                <div class="main-circle box-shadow-j">兑</div>
+                <div class="small-circle circle1 box-shadow-j">金窍心</div>
+                <div class="small-circle circle2 box-shadow-j">---</div>
+                <div class="small-circle circle3 box-shadow-j">---</div>
+                <div class="small-circle circle4 box-shadow-j">---</div>
+                <div class="small-circle circle5 box-shadow-j">---</div>
+            </div>
+            <div class="outer-circle container2 box-shadow-j">
+                <div class="main-circle box-shadow-j">庚</div>
+                <div class="small-circle circle1 box-shadow-j">金兽羽</div>
+                <div class="small-circle circle2 box-shadow-j">天金胄</div>
+                <div class="small-circle circle3 box-shadow-j">---</div>
+                <div class="small-circle circle4 box-shadow-j">---</div>
+                <div class="small-circle circle5 box-shadow-j">---</div>
+            </div>
+            <div class="outer-circle container3 box-shadow-j">
+                <div class="main-circle box-shadow-j">逍</div>
+                <div class="small-circle circle1 box-shadow-j">望商锋</div>
+                <div class="small-circle circle2 box-shadow-j">---</div>
+                <div class="small-circle circle3 box-shadow-j">---</div>
+                <div class="small-circle circle4 box-shadow-j">---</div>
+                <div class="small-circle circle5 box-shadow-j">---</div>
+            </div>
+            <div class="outer-circle container4 box-shadow-j">
+                <div class="main-circle box-shadow-j">库</div>
+                <div class="small-circle circle1 box-shadow-j">帑梁银</div>
+                <div class="small-circle circle2 box-shadow-j">---</div>
+                <div class="small-circle circle3 box-shadow-j">---</div>
+                <div class="small-circle circle4 box-shadow-j">---</div>
+                <div class="small-circle circle5 box-shadow-j">---</div>
+            </div>
+            <div class="outer-circle container5 box-shadow-j">
+                <div class="main-circle box-shadow-j">齐</div>
+                <div class="small-circle circle1 box-shadow-j">金销洞</div>
+                <div class="small-circle circle2 box-shadow-j">---</div>
+                <div class="small-circle circle3 box-shadow-j">---</div>
+                <div class="small-circle circle4 box-shadow-j">---</div>
+                <div class="small-circle circle5 box-shadow-j">---</div>
+            </div>
+        </div>
+        <div class="container container-s box-shadow-s">
+            <div class="small-circle box-shadow-s" style="left: 400px;top: 400px;">水</div>
+            <div class="outer-circle container1 box-shadow-s">
+                <div class="main-circle box-shadow-s">坎</div>
+                <div class="small-circle circle1 box-shadow-s">泾龙王</div>
+                <div class="small-circle circle2 box-shadow-s">溪上翁</div>
+                <div class="small-circle circle3 box-shadow-s">长云暗</div>
+                <div class="small-circle circle4 box-shadow-s">据岭中</div>
+                <div class="small-circle circle5 box-shadow-s">恨江去</div>
+            </div>
+            <div class="outer-circle container2 box-shadow-s">
+                <div class="main-circle box-shadow-s">府</div>
+                <div class="small-circle circle1 box-shadow-s">朝寒雨</div>
+                <div class="small-circle circle2 box-shadow-s">合黎渊</div>
+                <div class="small-circle circle3 box-shadow-s">---</div>
+                <div class="small-circle circle4 box-shadow-s">---</div>
+                <div class="small-circle circle5 box-shadow-s">---</div>
+            </div>
+
+            <div class="outer-circle container3 box-shadow-s">
+                <div class="main-circle box-shadow-s">渌</div>
+                <div class="small-circle circle1 box-shadow-s">洞泉声</div>
+                <div class="small-circle circle2 box-shadow-s">清夕雨</div>
+                <div class="small-circle circle3 box-shadow-s">如重浊</div>
+                <div class="small-circle circle4 box-shadow-s">丑癸藏</div>
+                <div class="small-circle circle5 box-shadow-s">洗劫露</div>
+            </div>
+
+            <div class="outer-circle container4 box-shadow-s">
+                <div class="main-circle box-shadow-s">牝</div>
+                <div class="small-circle circle1 box-shadow-s">佞无晨</div>
+                <div class="small-circle circle2 box-shadow-s">往生泉</div>
+                <div class="small-circle circle3 box-shadow-s">---</div>
+                <div class="small-circle circle4 box-shadow-s">---</div>
+                <div class="small-circle circle5 box-shadow-s">---</div>
+            </div>
+
+            <div class="outer-circle container5 box-shadow-s">
+                <div class="main-circle box-shadow-s">合</div>
+                <div class="small-circle circle1 box-shadow-s">归流处</div>
+                <div class="small-circle circle2 box-shadow-s">---</div>
+                <div class="small-circle circle3 box-shadow-s">---</div>
+                <div class="small-circle circle4 box-shadow-s">---</div>
+                <div class="small-circle circle5 box-shadow-s">---</div>
+            </div>
+        </div>
+        <div class="container container-m box-shadow-m">
+            <div class="small-circle box-shadow-m" style="left: 400px;top: 400px;">木</div>
+            <div class="outer-circle container1 box-shadow-m">
+                <div class="main-circle box-shadow-m">正</div>
+                <div class="small-circle circle1 box-shadow-m">位从专</div>
+                <div class="small-circle circle2 box-shadow-m">见查语</div>
+                <div class="small-circle circle3 box-shadow-m">木成方</div>
+                <div class="small-circle circle4 box-shadow-m">背南行</div>
+                <div class="small-circle circle5 box-shadow-m">---</div>
+            </div>
+            <div class="outer-circle container2 box-shadow-m">
+                <div class="main-circle box-shadow-m">更</div>
+                <div class="small-circle circle1 box-shadow-m">---</div>
+                <div class="small-circle circle2 box-shadow-m">---</div>
+                <div class="small-circle circle3 box-shadow-m">---</div>
+                <div class="small-circle circle4 box-shadow-m">---</div>
+                <div class="small-circle circle5 box-shadow-m">---</div>
+            </div>
+            <div class="outer-circle container3 box-shadow-m">
+                <div class="main-circle box-shadow-m">角</div>
+                <div class="small-circle circle1 box-shadow-m">潇重林</div>
+                <div class="small-circle circle2 box-shadow-m">余养性</div>
+                <div class="small-circle circle3 box-shadow-m">凌云木</div>
+                <div class="small-circle circle4 box-shadow-m">乙木全</div>
+                <div class="small-circle circle5 box-shadow-m">---</div>
+            </div>
+            <div class="outer-circle container4 box-shadow-m">
+                <div class="main-circle box-shadow-m">-</div>
+                <div class="small-circle circle1 box-shadow-m">---</div>
+                <div class="small-circle circle2 box-shadow-m">---</div>
+                <div class="small-circle circle3 box-shadow-m">---</div>
+                <div class="small-circle circle4 box-shadow-m">---</div>
+                <div class="small-circle circle5 box-shadow-m">---</div>
+            </div>
+            <div class="outer-circle container5 box-shadow-m">
+                <div class="main-circle box-shadow-m">集</div>
+                <div class="small-circle circle1 box-shadow-m">隼就栖</div>
+                <div class="small-circle circle2 box-shadow-m">---</div>
+                <div class="small-circle circle3 box-shadow-m">---</div>
+                <div class="small-circle circle4 box-shadow-m">---</div>
+                <div class="small-circle circle5 box-shadow-m">---</div>
+            </div>
+        </div>
+        <div class="container container-h box-shadow-h">
+            <div class="small-circle box-shadow-h" style="left: 400px;top: 400px;">火</div>
+            <div class="outer-circle container1 box-shadow-h">
+                <div class="main-circle box-shadow-h">离</div>
+                <div class="small-circle circle1 box-shadow-h">大离书</div>
+                <div class="small-circle circle2 box-shadow-h">九重擭</div>
+                <div class="small-circle circle3 box-shadow-h">---</div>
+                <div class="small-circle circle4 box-shadow-h">---</div>
+                <div class="small-circle circle5 box-shadow-h">---</div>
+            </div>
+            <div class="outer-circle container2 box-shadow-h">
+                <div class="main-circle box-shadow-h">真</div>
+                <div class="small-circle circle1 box-shadow-h">雉离行</div>
+                <div class="small-circle circle2 box-shadow-h">天兜火</div>
+                <div class="small-circle circle3 box-shadow-h">---</div>
+                <div class="small-circle circle4 box-shadow-h">---</div>
+                <div class="small-circle circle5 box-shadow-h">---</div>
+            </div>
+            <div class="outer-circle container3 box-shadow-h">
+                <div class="main-circle box-shadow-h">牡</div>
+                <div class="small-circle circle1 box-shadow-h">牡煞火</div>
+                <div class="small-circle circle2 box-shadow-h">---</div>
+                <div class="small-circle circle3 box-shadow-h">---</div>
+                <div class="small-circle circle4 box-shadow-h">---</div>
+                <div class="small-circle circle5 box-shadow-h">---</div>
+            </div>
+            <div class="outer-circle container4 box-shadow-h">
+                <div class="main-circle box-shadow-h">灴</div>
+                <div class="small-circle circle1 box-shadow-h">白樆心</div>
+                <div class="small-circle circle2 box-shadow-h">---</div>
+                <div class="small-circle circle3 box-shadow-h">---</div>
+                <div class="small-circle circle4 box-shadow-h">---</div>
+                <div class="small-circle circle5 box-shadow-h">---</div>
+            </div>
+            <div class="outer-circle container5 box-shadow-h">
+                <div class="main-circle box-shadow-h">并</div>
+                <div class="small-circle circle1 box-shadow-h">心期焚</div>
+                <div class="small-circle circle2 box-shadow-h">乌从欲</div>
+                <div class="small-circle circle3 box-shadow-h">焰中乌</div>
+                <div class="small-circle circle4 box-shadow-h">---</div>
+                <div class="small-circle circle5 box-shadow-h">---</div>
+            </div>
+        </div>
+        <div class="container container-t box-shadow-t">
+            <div class="small-circle box-shadow-t" style="left: 400px;top: 400px;">土</div>
+            <div class="outer-circle container-tu-1 box-shadow-t">
+                <div class="main-circle box-shadow-t">艮</div>
+                <div class="small-circle circle1 box-shadow-t">愚赶山</div>
+                <div class="small-circle circle2 box-shadow-t">---</div>
+                <div class="small-circle circle3 box-shadow-t">---</div>
+                <div class="small-circle circle4 box-shadow-t">---</div>
+                <div class="small-circle circle5 box-shadow-t">---</div>
+            </div>
+            <div class="outer-circle container-tu-2 box-shadow-t">
+                <div class="main-circle box-shadow-t">戊</div>
+                <div class="small-circle circle1 box-shadow-t">受抚顶</div>
+                <div class="small-circle circle2 box-shadow-t">戊心岩</div>
+                <div class="small-circle circle3 box-shadow-t">---</div>
+                <div class="small-circle circle4 box-shadow-t">---</div>
+                <div class="small-circle circle5 box-shadow-t">---</div>
+            </div>
+            <div class="outer-circle container-tu-3 box-shadow-t">
+                <div class="main-circle box-shadow-t">宝</div>
+                <div class="small-circle circle1 box-shadow-t">藏纳宫</div>
+                <div class="small-circle circle2 box-shadow-t">---</div>
+                <div class="small-circle circle3 box-shadow-t">---</div>
+                <div class="small-circle circle4 box-shadow-t">---</div>
+                <div class="small-circle circle5 box-shadow-t">---</div>
+            </div>
+            <div class="outer-circle container-tu-4 box-shadow-t">
+                <div class="main-circle box-shadow-t">宣</div>
+                <div class="small-circle circle1 box-shadow-t">---</div>
+                <div class="small-circle circle2 box-shadow-t">---</div>
+                <div class="small-circle circle3 box-shadow-t">---</div>
+                <div class="small-circle circle4 box-shadow-t">---</div>
+                <div class="small-circle circle5 box-shadow-t">---</div>
+            </div>
+            <div class="outer-circle container-tu-5 box-shadow-t">
+                <div class="main-circle box-shadow-t">青宣</div>
+                <div class="small-circle circle1 box-shadow-t">玄羊子</div>
+                <div class="small-circle circle2 box-shadow-t">青宣岳</div>
+                <div class="small-circle circle3 box-shadow-t">伏青山</div>
+                <div class="small-circle circle4 box-shadow-t">上岩神</div>
+                <div class="small-circle circle5 box-shadow-t">观地冥</div>
+            </div>
+            <div class="outer-circle container-tu-6 box-shadow-t">
+                <div class="main-circle box-shadow-t">归</div>
+                <div class="small-circle circle1 box-shadow-t">---</div>
+                <div class="small-circle circle2 box-shadow-t">---</div>
+                <div class="small-circle circle3 box-shadow-t">---</div>
+                <div class="small-circle circle4 box-shadow-t">---</div>
+                <div class="small-circle circle5 box-shadow-t">---</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
