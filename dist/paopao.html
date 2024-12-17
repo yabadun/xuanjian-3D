@@ -6,6 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Circles Layout with SVG</title>
     <style>
+        .zoom-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            background: rgb(134, 17, 17);
+            padding: 10px 15px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .zoom-label {
+            color: white;
+            font-size: 14px;
+        }
+
+        .zoom-slider {
+            width: 150px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            outline: none;
+        }
+
+        .zoom-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .zoom-slider::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+        }
+
+        .zoom-value {
+            color: white;
+            font-size: 14px;
+            min-width: 40px;
+        }
+
         .big-container {
             position: relative;
             width: 2700px;
@@ -91,7 +143,7 @@
 
         .box-shadow-s {
             box-shadow: inset 0 0 40px rgba(173, 216, 230, 0.5);
-        }   
+        }
 
         .box-shadow-m {
             box-shadow: inset 0 0 40px rgba(34, 139, 34, 0.5);
@@ -285,11 +337,19 @@
             }
         }
     </style>
+
 </head>
 
 <body>
+    <!-- 替换原来的zoom-controls HTML -->
+    <div class="zoom-controls">
+        <span class="zoom-label">缩放</span>
+        <input type="range" class="zoom-slider" min="50" max="200" value="100">
+        <span class="zoom-value">100%</span>
+    </div>
     <div class="big-container">
-        <div class="small-circle" style="width: 200px;height: 200px;left: 1250px;top: 1250px;box-shadow: inset 0 0 40px white;">五德</div>
+        <div class="small-circle"
+            style="width: 200px;height: 200px;left: 1250px;top: 1250px;box-shadow: inset 0 0 40px white;">五德</div>
         <div class="container container-j box-shadow-j">
             <!-- <div class="particle-container">
             <div class="particle"></div>
@@ -528,5 +588,16 @@
         </div>
     </div>
 </body>
+<script>
+    const container = document.querySelector('.big-container');
+    const slider = document.querySelector('.zoom-slider');
+    const valueDisplay = document.querySelector('.zoom-value');
+
+    slider.addEventListener('input', function () {
+        const scale = this.value / 100;
+        container.style.transform = `scale(${scale})`;
+        valueDisplay.textContent = `${this.value}%`;
+    });
+</script>
 
 </html>
