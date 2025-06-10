@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circles Layout with SVG</title>
+    <style>
+        :root {
+            /* 将基础尺寸改为 vw 单位，使用 min() 函数确保在不同屏幕比例下的最佳显示效果 */
+            --all-size: min(100vh, 100vw);
+            /* 其他变量相应调整，保持原有比例关系 */
+            --center-circle: calc((var(--all-size) / 3 / 2 / sin(36deg) - var(--all-size) / 3 / 2) * 2);
+            --five-center-circle: calc((var(--all-size) / 3 / 3 / 2 / sin(36deg) - var(--all-size) / 3 / 3 / 2) * 2);
+            --five-circle: calc(var(--all-size) / 3);
+            --five-small-circle: calc(var(--all-size) / 3 / 3);
+            --five-small-st-circle: calc(var(--all-size) / 3 / 3 / 3);
+
+        }
+
+
+        .big-container {
+            position: relative;
+            width: var(--all-size);
+            height: var(--all-size);
+            margin: auto;
+            background-color: black;
+            border-radius: 50%;
+            font-family: 隶书;
+            box-shadow: inset 0 0 calc(var(--all-size) / 10) white;
+        }
+
+        .container {
+            position: absolute;
+            width: var(--five-circle);
+            height: var(--five-circle);
+            background-color: black;
+            border-radius: 50%;
+            /* box-shadow: inset 0 0 40px gold; */
+            /* transform: translate(-50%, -50%); */
+            /* animation: rotate 10s linear infinite; */
+        }
+
+        .outer-circle {
+            position: absolute;
+            width: var(--five-small-circle);
+            height: var(--five-small-circle);
+            background-color: black;
+            border-radius: 50%;
+            color: #fff;
+            align-content: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-circle {
+            position: absolute;
+            width: var(--five-small-st-circle);
+            height: var(--five-small-st-circle);
+            background: transparent;
+            border-radius: 50%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: min(1.5vw, 1.5vh);
+            color: #fff;
+            align-content: center;
+            /* 添加以下属性实现文字居中 */
+            display: flex;
+            justify-content: center;
+            /* box-shadow: inset 0 0 40px gold; */
+            align-items: center;
+        }
+
+        .st-circle {
+            position: absolute;
+            width: var(--five-small-st-circle);
+            height: var(--five-small-st-circle);
+            background: transparent;
+            border-radius: 50%;
+            opacity: 1;
+            font-size: min(1.2vw, 1.2vh);
+            color: #fff;
+            /* box-shadow: inset 0 0 20px gold; */
+            /* 添加以下属性实现文字居中 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            /* animation: rotate 4s linear infinite; */
+            /* transform-origin: 100px 100px; */
+        }
+
+        .flash {
+            animation: flash 2s infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        .box-shadow-j {
+            box-shadow: inset 0 0 calc(var(--five-small-st-circle) / 3) rgba(255, 215, 0, 0.5);
+        }
+
+        .box-shadow-s {
+            box-shadow: inset 0 0 calc(var(--five-small-st-circle) / 3) rgba(173, 216, 230, 0.5);
+        }
+
+        .box-shadow-m {
+            box-shadow: inset 0 0 calc(var(--five-small-st-circle) / 3) rgba(34, 139, 34, 0.5);
+        }
+
+        .box-shadow-h {
+            box-shadow: inset 0 0 calc(var(--five-small-st-circle) / 3) rgba(255, 69, 0, 0.5);
+        }
+
+        .box-shadow-t {
+            box-shadow: inset 0 0 calc(var(--five-small-st-circle) / 3) rgba(205, 133, 63, 0.5);
+        }
+
+        .circle1 {
+            left: calc((var(--five-small-circle) / 2) + (var(--five-small-circle) / 3) * cos(18deg) - (var(--five-small-circle) / 3 / 2));
+            top: calc((var(--five-small-circle) / 2) + (var(--five-small-circle) / 3) * sin(18deg) - (var(--five-small-circle) / 3 / 2));
+        }
+
+        .circle2 {
+            left: calc((var(--five-small-circle) / 2) + (var(--five-small-circle) / 3) * cos(90deg) - (var(--five-small-circle) / 3 / 2));
+            top: calc((var(--five-small-circle) / 2) + (var(--five-small-circle) / 3) * sin(90deg) - (var(--five-small-circle) / 3 / 2));
+        }
+
+        .circle3 {
+            left: calc((var(--five-small-circle) / 2) + (var(--five-small-circle) / 3) * cos(162deg) - (var(--five-small-circle) / 3 / 2));
+            top: calc((var(--five-small-circle) / 2) + (var(--five-small-circle) / 3) * sin(162deg) - (var(--five-small-circle) / 3 / 2));
+        }
+
+        .circle4 {
+            left: calc((var(--five-small-circle) / 2) + (var(--five-small-circle) / 3) * cos(234deg) - (var(--five-small-circle) / 3 / 2));
+            top: calc((var(--five-small-circle) / 2) + (var(--five-small-circle) / 3) * sin(234deg) - (var(--five-small-circle) / 3 / 2));
+        }
+
+        .circle5 {
+            left: calc((var(--five-small-circle) / 2) + (var(--five-small-circle) / 3) * cos(306deg) - (var(--five-small-circle) / 3 / 2));
+            top: calc((var(--five-small-circle) / 2) + (var(--five-small-circle) / 3) * sin(306deg) - (var(--five-small-circle) / 3 / 2));
+        }
+
+        .container-h {
+            left: calc((var(--all-size) / 2) + (var(--all-size) / 3) * cos(18deg) - (var(--all-size) / 3 / 2));
+            top: calc((var(--all-size) / 2) + (var(--all-size) / 3) * sin(18deg) - (var(--all-size) / 3 / 2));
+        }
+
+        .container-t {
+            left: calc((var(--all-size) / 2) + (var(--all-size) / 3) * cos(90deg) - (var(--all-size) / 3 / 2));
+            top: calc((var(--all-size) / 2) + (var(--all-size) / 3) * sin(90deg) - (var(--all-size) / 3 / 2));
+        }
+
+        .container-s {
+            left: calc((var(--all-size) / 2) + (var(--all-size) / 3) * cos(162deg) - (var(--all-size) / 3 / 2));
+            top: calc((var(--all-size) / 2) + (var(--all-size) / 3) * sin(162deg) - (var(--all-size) / 3 / 2));
+        }
+
+        .container-j {
+            left: calc((var(--all-size) / 2) + (var(--all-size) / 3) * cos(234deg) - (var(--all-size) / 3 / 2));
+            top: calc((var(--all-size) / 2) + (var(--all-size) / 3) * sin(234deg) - (var(--all-size) / 3 / 2));
+        }
+
+        .container-m {
+            left: calc((var(--all-size) / 2) + (var(--all-size) / 3) * cos(306deg) - (var(--all-size) / 3 / 2));
+            top: calc((var(--all-size) / 2) + (var(--all-size) / 3) * sin(306deg) - (var(--all-size) / 3 / 2));
+        }
+
+        .container1 {
+            left: calc((var(--five-circle) / 2) + (var(--five-circle) / 3) * cos(18deg) - (var(--five-circle) / 3 / 2));
+            top: calc((var(--five-circle) / 2) + (var(--five-circle) / 3) * sin(18deg) - (var(--five-circle) / 3 / 2));
+        }
+
+        .container2 {
+            left: calc((var(--five-circle) / 2) + (var(--five-circle) / 3) * cos(90deg) - (var(--five-circle) / 3 / 2));
+            top: calc((var(--five-circle) / 2) + (var(--five-circle) / 3) * sin(90deg) - (var(--five-circle) / 3 / 2));
+        }
+
+        .container3 {
+            left: calc((var(--five-circle) / 2) + (var(--five-circle) / 3) * cos(162deg) - (var(--five-circle) / 3 / 2));
+            top: calc((var(--five-circle) / 2) + (var(--five-circle) / 3) * sin(162deg) - (var(--five-circle) / 3 / 2));
+        }
+
+        .container4 {
+            left: calc((var(--five-circle) / 2) + (var(--five-circle) / 3) * cos(234deg) - (var(--five-circle) / 3 / 2));
+            top: calc((var(--five-circle) / 2) + (var(--five-circle) / 3) * sin(234deg) - (var(--five-circle) / 3 / 2));
+        }
+
+        .container5 {
+            left: calc((var(--five-circle) / 2) + (var(--five-circle) / 3) * cos(306deg) - (var(--five-circle) / 3 / 2));
+            top: calc((var(--five-circle) / 2) + (var(--five-circle) / 3) * sin(306deg) - (var(--five-circle) / 3 / 2));
+        }
+
+        .container-tu-1 {
+            left: calc((var(--five-circle) / 2) + (var(--five-circle) / 3) * cos(0deg) - (var(--five-circle) / 3 / 2));
+            top: calc((var(--five-circle) / 2) + (var(--five-circle) / 3) * sin(0deg) - (var(--five-circle) / 3 / 2));
+        }
+
+        .container-tu-2 {
+            left: calc((var(--five-circle) / 2) + (var(--five-circle) / 3) * cos(60deg) - (var(--five-circle) / 3 / 2));
+            top: calc((var(--five-circle) / 2) + (var(--five-circle) / 3) * sin(60deg) - (var(--five-circle) / 3 / 2));
+        }
+
+        .container-tu-3 {
+            left: calc((var(--five-circle) / 2) + (var(--five-circle) / 3) * cos(120deg) - (var(--five-circle) / 3 / 2));
+            top: calc((var(--five-circle) / 2) + (var(--five-circle) / 3) * sin(120deg) - (var(--five-circle) / 3 / 2));
+        }
+
+        .container-tu-4 {
+            left: calc((var(--five-circle) / 2) + (var(--five-circle) / 3) * cos(180deg) - (var(--five-circle) / 3 / 2));
+            top: calc((var(--five-circle) / 2) + (var(--five-circle) / 3) * sin(180deg) - (var(--five-circle) / 3 / 2));
+        }
+
+        .container-tu-5 {
+            left: calc((var(--five-circle) / 2) + (var(--five-circle) / 3) * cos(240deg) - (var(--five-circle) / 3 / 2));
+            top: calc((var(--five-circle) / 2) + (var(--five-circle) / 3) * sin(240deg) - (var(--five-circle) / 3 / 2));
+        }
+
+        .container-tu-6 {
+            left: calc((var(--five-circle) / 2) + (var(--five-circle) / 3) * cos(300deg) - (var(--five-circle) / 3 / 2));
+            top: calc((var(--five-circle) / 2) + (var(--five-circle) / 3) * sin(300deg) - (var(--five-circle) / 3 / 2));
+        }
+
+        .particles-wrapper {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            border-radius: 50%;
+        }
+
+        .particle-large {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .particle-large:nth-child(1) {
+            animation: floatParticle 8s infinite linear;
+            animation-delay: 0s;
+        }
+
+        .particle-large:nth-child(2) {
+            animation: floatParticle 8s infinite linear;
+            animation-delay: 2.6s;
+        }
+
+        .particle-large:nth-child(3) {
+            animation: floatParticle 8s infinite linear;
+            animation-delay: 5.3s;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translate(50%, 50%) rotate(0deg) translateX(1000px) rotate(0deg);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 0.6;
+            }
+
+            80% {
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translate(50%, 50%) rotate(360deg) translateX(1000px) rotate(-360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes flash {
+            0% {
+                opacity: 1;
+            }
+
+            12% {
+                opacity: 0.75;
+            }
+
+            25% {
+                opacity: 0.5;
+            }
+
+            37% {
+                opacity: 0.25;
+            }
+
+            50% {
+                opacity: 0
+            }
+
+            62% {
+                opacity: 0.25;
+            }
+
+            75% {
+                opacity: 0.5;
+            }
+
+            87% {
+                opacity: 0.75;
+            }
+
+            100% {
+                opacity: 1
+            }
+        }
+
+        .big-0 {
+            z-index: 3;
+        }
+
+        .big-1 {
+            display: none;
+        }
+
+        .big-2 {
+            display: none;
+        }
+
+        .big-3 {
+            display: none;
+        }
+
+        .big-4 {
+            display: none;
+        }
+        .big-5 {
+            display: none;
+        }
+
+        .mid-circle {
+            position: absolute;
+            width: calc(var(--all-size) / (sqrt(3) * 2 + 1));
+            height: calc(var(--all-size) / (sqrt(3) * 2 + 1));
+            border-radius: 50%;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: min(2.5vw, 2.5vh);
+            color: white;
+            box-shadow: inset 0 0 calc(var(--all-size) / 100) white;
+        }
+
+        .small-circle {
+            position: absolute;
+            width: calc(var(--all-size) / (sqrt(3) * 2 + 1) / 3);
+            height: calc(var(--all-size) / (sqrt(3) * 2 + 1) / 3);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: min(2vw, 2vh);
+            box-shadow: inset 0 0 calc(var(--all-size) / 100) white;
+        }
+
+        .mid-circle-0 {
+            left: calc(var(--all-size) / 2 - var(--all-size) / (sqrt(3) * 2 + 1) / 2);
+            top: calc(var(--all-size) / 2 - var(--all-size) / (sqrt(3) * 2 + 1) / 2);
+            font-size: min(6vw, 6vh);
+        }
+
+        .mid-circle-1 {
+            left: calc((var(--all-size) / 2) + var(--all-size) / (sqrt(3) * 2 + 1) * cos(0deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 2));
+            top: calc((var(--all-size) / 2) + var(--all-size) / (sqrt(3) * 2 + 1) * sin(0deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 2));
+        }
+
+        .mid-circle-2 {
+            left: calc((var(--all-size) / 2) + var(--all-size) / (sqrt(3) * 2 + 1) * cos(60deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 2));
+            top: calc((var(--all-size) / 2) + var(--all-size) / (sqrt(3) * 2 + 1) * sin(60deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 2));
+        }
+
+        .mid-circle-3 {
+            left: calc((var(--all-size) / 2) + var(--all-size) / (sqrt(3) * 2 + 1) * cos(120deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 2));
+            top: calc((var(--all-size) / 2) + var(--all-size) / (sqrt(3) * 2 + 1) * sin(120deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 2));
+        }
+
+        .mid-circle-4 {
+            left: calc((var(--all-size) / 2) + var(--all-size) / (sqrt(3) * 2 + 1) * cos(180deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 2));
+            top: calc((var(--all-size) / 2) + var(--all-size) / (sqrt(3) * 2 + 1) * sin(180deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 2));
+        }
+
+        .mid-circle-5 {
+            left: calc((var(--all-size) / 2) + var(--all-size) / (sqrt(3) * 2 + 1) * cos(240deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 2));
+            top: calc((var(--all-size) / 2) + var(--all-size) / (sqrt(3) * 2 + 1) * sin(240deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 2));
+        }
+
+
+
+
+        .box-shadow-zi {
+            box-shadow: inset 0 0 calc(var(--all-size) / 100) rgb(108, 55, 144);
+            z-index: 2;
+            text-shadow: 0 0 calc(var(--all-size) / 100) rgba(145, 102, 174, 0.8);
+        }
+
+        .mid-circle-6 {
+            left: calc((var(--all-size) / 2) + var(--all-size) / (sqrt(3) * 2 + 1) * cos(300deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 2));
+            top: calc((var(--all-size) / 2) + var(--all-size) / (sqrt(3) * 2 + 1) * sin(300deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 2));
+        }
+
+        .mid-circle-7 {
+            left: calc((var(--all-size) / 2) + (var(--all-size) / 2 - var(--all-size) / (sqrt(3) * 2 + 1) / 2) * cos(30deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 2));
+            top: calc((var(--all-size) / 2) + (var(--all-size) / 2 - var(--all-size) / (sqrt(3) * 2 + 1) / 2) * sin(30deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 2));
+        }
+
+        .mid-circle-8 {
+            left: calc((var(--all-size) / 2) + (var(--all-size) / 2 - var(--all-size) / (sqrt(3) * 2 + 1) / 2) * cos(90deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 2));
+            top: calc((var(--all-size) / 2) + (var(--all-size) / 2 - var(--all-size) / (sqrt(3) * 2 + 1) / 2) * sin(90deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 2));
+        }
+
+        .mid-circle-9 {
+            left: calc((var(--all-size) / 2) + (var(--all-size) / 2 - var(--all-size) / (sqrt(3) * 2 + 1) / 2) * cos(150deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 2));
+            top: calc((var(--all-size) / 2) + (var(--all-size) / 2 - var(--all-size) / (sqrt(3) * 2 + 1) / 2) * sin(150deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 2));
+        }
+
+        .mid-circle-10 {
+            left: calc((var(--all-size) / 2) + (var(--all-size) / 2 - var(--all-size) / (sqrt(3) * 2 + 1) / 2) * cos(210deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 2));
+            top: calc((var(--all-size) / 2) + (var(--all-size) / 2 - var(--all-size) / (sqrt(3) * 2 + 1) / 2) * sin(210deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 2));
+        }
+
+        .mid-circle-11 {
+            left: calc((var(--all-size) / 2) + (var(--all-size) / 2 - var(--all-size) / (sqrt(3) * 2 + 1) / 2) * cos(270deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 2));
+            top: calc((var(--all-size) / 2) + (var(--all-size) / 2 - var(--all-size) / (sqrt(3) * 2 + 1) / 2) * sin(270deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 2));
+        }
+
+        .mid-circle-12 {
+            left: calc((var(--all-size) / 2) + (var(--all-size) / 2 - var(--all-size) / (sqrt(3) * 2 + 1) / 2) * cos(330deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 2));
+            top: calc((var(--all-size) / 2) + (var(--all-size) / 2 - var(--all-size) / (sqrt(3) * 2 + 1) / 2) * sin(330deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 2));
+        }
+
+        .small-circle-0 {
+            font-size: min(3.5vw, 3.5vh);
+        }
+
+        .small-circle-1 {
+            left: calc((var(--all-size) / (sqrt(3) * 2 + 1) / 2) + (var(--all-size) / (sqrt(3) * 2 + 1) / 3) * cos(18deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 3 / 2));
+            top: calc((var(--all-size) / (sqrt(3) * 2 + 1) / 2) + (var(--all-size) / (sqrt(3) * 2 + 1) / 3) * sin(18deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 3 / 2));
+        }
+
+        .small-circle-2 {
+            left: calc((var(--all-size) / (sqrt(3) * 2 + 1) / 2) + (var(--all-size) / (sqrt(3) * 2 + 1) / 3) * cos(90deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 3 / 2));
+            top: calc((var(--all-size) / (sqrt(3) * 2 + 1) / 2) + (var(--all-size) / (sqrt(3) * 2 + 1) / 3) * sin(90deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 3 / 2));
+        }
+
+        .small-circle-3 {
+            left: calc((var(--all-size) / (sqrt(3) * 2 + 1) / 2) + (var(--all-size) / (sqrt(3) * 2 + 1) / 3) * cos(162deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 3 / 2));
+            top: calc((var(--all-size) / (sqrt(3) * 2 + 1) / 2) + (var(--all-size) / (sqrt(3) * 2 + 1) / 3) * sin(162deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 3 / 2));
+        }
+
+        .small-circle-4 {
+            left: calc((var(--all-size) / (sqrt(3) * 2 + 1) / 2) + (var(--all-size) / (sqrt(3) * 2 + 1) / 3) * cos(234deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 3 / 2));
+            top: calc((var(--all-size) / (sqrt(3) * 2 + 1) / 2) + (var(--all-size) / (sqrt(3) * 2 + 1) / 3) * sin(234deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 3 / 2));
+        }
+
+        .small-circle-5 {
+            left: calc((var(--all-size) / (sqrt(3) * 2 + 1) / 2) + (var(--all-size) / (sqrt(3) * 2 + 1) / 3) * cos(306deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 3 / 2));
+            top: calc((var(--all-size) / (sqrt(3) * 2 + 1) / 2) + (var(--all-size) / (sqrt(3) * 2 + 1) / 3) * sin(306deg) - (var(--all-size) / (sqrt(3) * 2 + 1) / 3 / 2));
+        }
+
+        .mid-circle-yy {
+            position: absolute;
+            width: calc(var(--all-size) / 3);
+            height: calc(var(--all-size) / 3);
+            border-radius: 50%;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: min(2.5vw, 2.5vh);
+            color: white;
+            box-shadow: inset 0 0 calc(var(--all-size) / 100) white;
+        }
+
+        .small-circle-yy {
+            position: absolute;
+            width: calc(var(--all-size) / 3 / 3);
+            height: calc(var(--all-size) / 3 / 3);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: inset 0 0 calc(var(--all-size) / 100) white;
+        }
+
+        .mid-circle-yy-0 {
+            left: calc(var(--all-size) / 2 - var(--all-size) / 3 / 2);
+            top: calc(var(--all-size) / 2 - var(--all-size) / 3 / 2);
+            font-size: min(2.5vw, 2.5vh);
+        }
+
+        .mid-circle-yy-1 {
+            left: calc((var(--all-size) / 2) + (var(--all-size) / 3) * cos(0deg) - (var(--all-size) / 3 / 2));
+            top: calc((var(--all-size) / 2) + (var(--all-size) / 3) * sin(0deg) - (var(--all-size) / 3 / 2));
+        }
+
+        .mid-circle-yy-2 {
+            left: calc((var(--all-size) / 2) + (var(--all-size) / 3) * cos(60deg) - (var(--all-size) / 3 / 2));
+            top: calc((var(--all-size) / 2) + (var(--all-size) / 3) * sin(60deg) - (var(--all-size) / 3 / 2));
+        }
+
+        .mid-circle-yy-3 {
+            left: calc((var(--all-size) / 2) + (var(--all-size) / 3) * cos(120deg) - (var(--all-size) / 3 / 2));
+            top: calc((var(--all-size) / 2) + (var(--all-size) / 3) * sin(120deg) - (var(--all-size) / 3 / 2));
+        }
+
+        .mid-circle-yy-4 {
+            left: calc((var(--all-size) / 2) + (var(--all-size) / 3) * cos(180deg) - (var(--all-size) / 3 / 2));
+            top: calc((var(--all-size) / 2) + (var(--all-size) / 3) * sin(180deg) - (var(--all-size) / 3 / 2));
+        }
+
+        .mid-circle-yy-5 {
+            left: calc((var(--all-size) / 2) + (var(--all-size) / 3) * cos(240deg) - (var(--all-size) / 3 / 2));
+            top: calc((var(--all-size) / 2) + (var(--all-size) / 3) * sin(240deg) - (var(--all-size) / 3 / 2));
+        }
+
+
+        .mid-circle-yy-6 {
+            left: calc((var(--all-size) / 2) + (var(--all-size) / 3) * cos(300deg) - (var(--all-size) / 3 / 2));
+            top: calc((var(--all-size) / 2) + (var(--all-size) / 3) * sin(300deg) - (var(--all-size) / 3 / 2));
+        }
+
+        .out-circle-1 {
+            left: calc((var(--all-size)));
+            top: calc((var(--all-size) / 2) + (var(--all-size) / 3) * sin(0deg) - (var(--all-size) / 3 / 2));
+        }
+
+        .out-circle-2 {
+            right: calc(var(--all-size));
+            top: calc((var(--all-size) / 2) + (var(--all-size) / 3) * sin(180deg) - (var(--all-size) / 3 / 2));
+        }
+
+
+
+        .small-circle-yy-0 {
+            font-size: min(3.5vw, 3.5vh);
+        }
+
+        .small-circle-yy-1 {
+            left: calc((var(--all-size) / 3 / 2) + (var(--all-size) / 3 / 3) * cos(18deg) - (var(--all-size) / 3 / 3 / 2));
+            top: calc((var(--all-size) / 3 / 2) + (var(--all-size) / 3 / 3) * sin(18deg) - (var(--all-size) / 3 / 3 / 2));
+        }
+
+        .small-circle-yy-2 {
+            left: calc((var(--all-size) / 3 / 2) + (var(--all-size) / 3 / 3) * cos(90deg) - (var(--all-size) / 3 / 3 / 2));
+            top: calc((var(--all-size) / 3 / 2) + (var(--all-size) / 3 / 3) * sin(90deg) - (var(--all-size) / 3 / 3 / 2));
+        }
+
+        .small-circle-yy-3 {
+            left: calc((var(--all-size) / 3 / 2) + (var(--all-size) / 3 / 3) * cos(162deg) - (var(--all-size) / 3 / 3 / 2));
+            top: calc((var(--all-size) / 3 / 2) + (var(--all-size) / 3 / 3) * sin(162deg) - (var(--all-size) / 3 / 3 / 2));
+        }
+
+        .small-circle-yy-4 {
+            left: calc((var(--all-size) / 3 / 2) + (var(--all-size) / 3 / 3) * cos(234deg) - (var(--all-size) / 3 / 3 / 2));
+            top: calc((var(--all-size) / 3 / 2) + (var(--all-size) / 3 / 3) * sin(234deg) - (var(--all-size) / 3 / 3 / 2));
+        }
+
+        .small-circle-yy-5 {
+            left: calc((var(--all-size) / 3 / 2) + (var(--all-size) / 3 / 3) * cos(306deg) - (var(--all-size) / 3 / 3 / 2));
+            top: calc((var(--all-size) / 3 / 2) + (var(--all-size) / 3 / 3) * sin(306deg) - (var(--all-size) / 3 / 3 / 2));
+        }
+
+        .flip-card {
+            transform-style: preserve-3d;
+            /* 保持3D变换效果 */
+            transition: transform 0.6s ease-in-out;
+            /* 过渡动画 */
+        }
+
+        .flip-card:hover {
+            transform: rotateY(180deg);
+            /* 翻转到背面 */
+        }
+
+        .card-back {
+            backface-visibility: hidden;
+            /* 隐藏背面 */
+            transform: rotateY(180deg);
+            /* 后面卡片初始位置 */
+            font-size: min(1.5vw, 1.5vh);
+        }
+
+        .taiji {
+            background: linear-gradient(90deg, #000 50%, #fff 50%);
+            animation: rotate 8s linear infinite;
+        }
+
+        .taiji::before,
+        .taiji::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            border-radius: 50%;
+            left: 25%;
+        }
+
+        .taiji::before {
+            top: 0;
+            background: #000;
+        }
+
+        .taiji::after {
+            bottom: 0;
+            background: #fff;
+        }
+
+        .taiji .dot-white,
+        .taiji .dot-black {
+            position: absolute;
+            width: 20%;
+            height: 20%;
+            border-radius: 50%;
+            left: 40%;
+            z-index: 2;
+        }
+
+        .taiji .dot-white {
+            background: #fff;
+            top: 15%;
+        }
+
+        .taiji .dot-black {
+            background: #000;
+            bottom: 15%;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .thunder-text {
+            z-index: 2;
+            color: white;
+            text-shadow: 0 0 calc(var(--all-size) / 100) rgba(255, 255, 255, 0.8);
+        }
+
+        .scale-circle {
+            width: calc(var(--all-size) / 3 / 3 / 3);
+            height: calc(var(--all-size) / 3 / 3 / 3);
+            background-color: transparent;
+            border: 2px solid white;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite linear;
+            position: absolute;
+        }
+
+        .scale-circle:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .scale-circle:nth-child(2) {
+            animation-delay: 0.5s;
+            /* 设置第二个圆环的动画延迟时间 */
+        }
+
+        .scale-circle:nth-child(3) {
+            animation-delay: 1s;
+            /* 设置第三个圆环的动画延迟时间 */
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+
+            80% {
+                transform: scale(4);
+                opacity: 0.25;
+            }
+
+            100% {
+                transform: scale(5);
+                opacity: 0;
+            }
+        }
+
+        @keyframes text-fade {
+            0% {
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            40% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="all-container">
+
+        <div class="big-container big-0">
+            <div class="mid-circle-yy mid-circle-yy-0 taiji">
+                <div class="dot-white"></div>
+                <div class="dot-black"></div>
+            </div>
+            <div class="mid-circle-yy mid-circle-yy-1">
+                <div class="small-circle-yy small-circle-yy-0">厥阴</div>
+                <div class="small-circle-yy small-circle-yy-1">
+                    <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">参疑室</span>
+                        <span
+                            style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">不二舆</span>
+                    
+                </div>
+                <div class="small-circle-yy small-circle-yy-2">
+                    <span style="position: absolute;opacity: 0;animation: text-fade 6s infinite;">不紫衣</span>
+                    <span
+                        style="position: absolute;opacity: 0;animation: text-fade 6s infinite;animation-delay: 2s;">掩弊服</span>
+                    <span
+                        style="position: absolute;opacity: 0;animation: text-fade 6s infinite;animation-delay: 4s;">利异臣</span>
+                </div>
+                <div class="small-circle-yy small-circle-yy-3 flash"></div>
+                <div class="small-circle-yy small-circle-yy-4 flash"></div>
+                <div class="small-circle-yy small-circle-yy-5 flash"></div>
+            </div>
+
+            <div class="mid-circle-yy mid-circle-yy-2 ">
+                <div class="small-circle-yy small-circle-yy-0">少阴</div>
+                <div class="small-circle-yy small-circle-yy-1">香俱沉</div>
+                <div class="small-circle-yy small-circle-yy-2 flash"></div>
+                <div class="small-circle-yy small-circle-yy-3 flash"></div>
+                <div class="small-circle-yy small-circle-yy-4 flash"></div>
+                <div class="small-circle-yy small-circle-yy-5 flash"></div>
+            </div>
+
+            <div class="mid-circle-yy mid-circle-yy-3">
+                <div class="small-circle-yy small-circle-yy-0 ">少阳</div>
+                <div class="small-circle-yy small-circle-yy-1 flash"></div>
+                <div class="small-circle-yy small-circle-yy-2 ">邪绝求</div>
+                <div class="small-circle-yy small-circle-yy-3 flash"></div>
+                <div class="small-circle-yy small-circle-yy-4 flash"></div>
+                <div class="small-circle-yy small-circle-yy-5 flash"></div>
+            </div>
+
+            <div class="mid-circle-yy mid-circle-yy-4 flip-card">
+                <div class="mid-circle-yy">
+                    <div class="small-circle-yy small-circle-yy-0">明阳</div>
+                    <div class="small-circle-yy small-circle-yy-1">
+                        <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">谒天门</span>
+                        <span
+                            style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">煌元关</span>
+                    </div>
+                    <div class="small-circle-yy small-circle-yy-2">君蹈危</div>
+                    <div class="small-circle-yy small-circle-yy-3">
+                        <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">长明阶</span>
+                        <span
+                            style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">帝观元</span>
+                    </div>
+                    <div class="small-circle-yy small-circle-yy-4">赤断镞</div>
+                    <div class="small-circle-yy small-circle-yy-5">
+                        <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">昭澈心</span>
+                        <span
+                            style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">天下明</span>
+                    </div>
+                </div>
+                <div class="mid-circle-yy card-back">明华煌阳御交性</div>
+            </div>
+
+            <div class="mid-circle-yy mid-circle-yy-5 ">
+                <div class="small-circle-yy small-circle-yy-0">太阳</div>
+                <div class="small-circle-yy small-circle-yy-1">
+                    <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">视天统</span>
+                    <span
+                        style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">分阳钗</span>
+                </div>
+                <div class="small-circle-yy small-circle-yy-2 flash"></div>
+                <div class="small-circle-yy small-circle-yy-3 flash"></div>
+                <div class="small-circle-yy small-circle-yy-4 flash"></div>
+                <div class="small-circle-yy small-circle-yy-5 flash"></div>
+            </div>
+
+            <div class="mid-circle-yy mid-circle-yy-6">
+                <div class="small-circle-yy small-circle-yy-0">太阴</div>
+                <div class="small-circle-yy small-circle-yy-1">
+                    <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">仪对影</span>
+                    <span
+                        style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">授玄珠</span>
+                </div>
+                <div class="small-circle-yy small-circle-yy-2">
+                    <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">湖月秋</span>
+                    <span
+                        style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">惊鹊乡</span>
+                </div>
+                <div class="small-circle-yy small-circle-yy-3">结璘章</div>
+                <div class="small-circle-yy small-circle-yy-4">
+                    <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">诣太素</span>
+                    <span
+                        style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">再圆阙</span>
+                </div>
+                <div class="small-circle-yy small-circle-yy-5">不胜寒</div>
+            </div>
+            <div class="mid-circle-yy out-circle-1">
+                <div class="small-circle-yy small-circle-yy-0">虹霞</div>
+                <div class="small-circle-yy small-circle-yy-1 flash"></div>
+                <div class="small-circle-yy small-circle-yy-2 flash"></div>
+                <div class="small-circle-yy small-circle-yy-3 ">长霞雾</div>
+                <div class="small-circle-yy small-circle-yy-4 flash"></div>
+                <div class="small-circle-yy small-circle-yy-5 flash"></div>
+            </div>
+            <div class="mid-circle-yy out-circle-2">
+                <div class="small-circle-yy small-circle-yy-0">剑</div>
+                <div class="small-circle-yy small-circle-yy-1">养青冥</div>
+                <div class="small-circle-yy small-circle-yy-2 flash"></div>
+                <div class="small-circle-yy small-circle-yy-3 flash"></div>
+                <div class="small-circle-yy small-circle-yy-4 flash"></div>
+                <div class="small-circle-yy small-circle-yy-5 flash"></div>
+            </div>
+        </div>
+
+        <div class="big-container big-1">
+            <div class="mid-circle-yy mid-circle-yy-0">
+                <span class="thunder-text thunder-text" style="font-size: min(10vw, 10vh);">雷</span>
+            </div>
+            <div class="mid-circle-yy mid-circle-yy-1">
+                <div class="small-circle-yy small-circle-yy-0  thunder-text">玄雷</div>
+                <div class="small-circle-yy small-circle-yy-1">靖平敕</div>
+                <div class="small-circle-yy small-circle-yy-2">至阳嘘</div>
+                <div class="small-circle-yy small-circle-yy-3 flash"></div>
+                <div class="small-circle-yy small-circle-yy-4 flash"></div>
+                <div class="small-circle-yy small-circle-yy-5 flash"></div>
+            </div>
+
+
+
+            <div class="mid-circle-yy mid-circle-yy-3">
+                <div class="small-circle-yy small-circle-yy-0  thunder-text">霄雷</div>
+                <div class="small-circle-yy small-circle-yy-1">
+                    <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">冬雷声</span>
+                    <span
+                        style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">玄雷泊</span>
+                </div>
+                <div class="small-circle-yy small-circle-yy-2">天鸣策</div>
+                <div class="small-circle-yy small-circle-yy-3">轻雷落</div>
+                <div class="small-circle-yy small-circle-yy-4 flash"></div>
+                <div class="small-circle-yy small-circle-yy-5 flash"></div>
+            </div>
+
+
+
+            <div class="mid-circle-yy mid-circle-yy-5 ">
+                <div class="small-circle-yy small-circle-yy-0  thunder-text">元磁</div>
+                <div class="scale-circle"></div>
+                <div class="scale-circle"></div>
+                <div class="scale-circle"></div>
+                <div class="small-circle-yy small-circle-yy-1">主煞仪</div>
+                <div class="small-circle-yy small-circle-yy-2 flash"></div>
+                <div class="small-circle-yy small-circle-yy-3 flash"></div>
+                <div class="small-circle-yy small-circle-yy-4 flash"></div>
+                <div class="small-circle-yy small-circle-yy-5 flash"></div>
+            </div>
+
+
+
+        </div>
+        <div class="big-container big-2">
+            <div class="particles-wrapper">
+                <!-- 添加多个粒子 -->
+                <div class="particle-large"></div>
+                <div class="particle-large"></div>
+                <div class="particle-large"></div>
+                <!-- ... 可以根据需要添加更多粒子 ... -->
+            </div>
+            <!-- <div class="small-circle"
+            style="font-size: 100px;width: calc((var(--five-circle) / 2 / sin(36deg) - var(--five-circle) / 2) * 2);height: calc((var(--five-circle) / 2 / sin(36deg) - var(--five-circle) / 2) * 2);left: calc(var(--all-size) / 2 - var(--five-circle) / 2);top: calc(var(--all-size) / 2 - var(--five-circle) / 2);box-shadow: inset 0 0 40px white;overflow: visible;">五德</div>-->
+            <div class="st-circle"
+                style="font-size: min(10vw, 10vh);width: var(--five-circle);height: var(--five-circle);left: calc(var(--all-size) / 2 - var(--five-circle) / 2);top: calc(var(--all-size) / 2 - var(--five-circle) / 2);box-shadow: inset 0 0 40px white;overflow: visible;">
+                五德</div>
+
+            <div class="container container-j box-shadow-j">
+                <div class="outer-circle box-shadow-j"
+                    style="font-size: min(4vw, 4vh); left: calc(var(--five-circle) / 2 - var(--five-small-circle) / 2);top: calc(var(--five-circle) / 2 - var(--five-small-circle) / 2);">
+                    金</div>
+                <div class="outer-circle container1  box-shadow-j">
+                    <div class="main-circle box-shadow-j">兑</div>
+                    <div class="st-circle circle1 box-shadow-j">金窍心</div>
+                    <div class="st-circle circle2 box-shadow-j">
+                        <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">请两忘</span>
+                        <span
+                            style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">位从孚</span>
+                    </div>
+                    <div class="st-circle circle3 box-shadow-j">君兑隅</div>
+                    <div class="st-circle circle4 box-shadow-j">不穷锋</div>
+                    <div class="st-circle circle5 box-shadow-j">杀收宫</div>
+                </div>
+
+                <div class="outer-circle container2 box-shadow-j">
+                    <div class="main-circle box-shadow-j">齐</div>
+                    <div class="st-circle circle1 box-shadow-j">金销洞</div>
+                    <div class="st-circle circle2 box-shadow-j flash"></div>
+                    <div class="st-circle circle3 box-shadow-j flash"></div>
+                    <div class="st-circle circle4 box-shadow-j flash"></div>
+                    <div class="st-circle circle5 box-shadow-j flash"></div>
+                </div>
+
+                <div class="outer-circle container5 box-shadow-j">
+                    <div class="main-circle box-shadow-j">逍</div>
+                    <div class="st-circle circle1 box-shadow-j">望商锋</div>
+                    <div class="st-circle circle2 box-shadow-j flash"></div>
+                    <div class="st-circle circle3 box-shadow-j flash"></div>
+                    <div class="st-circle circle4 box-shadow-j flash"></div>
+                    <div class="st-circle circle5 box-shadow-j flash"></div>
+                </div>
+
+                <div class="outer-circle container4 box-shadow-j">
+                    <div class="main-circle box-shadow-j">庚</div>
+                    <div class="st-circle circle1 box-shadow-j">
+                        <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">金兽羽</span>
+                        <span
+                            style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">镂金石</span>
+                    </div>
+                    <div class="st-circle circle2 box-shadow-j">天金胄</div>
+                    <div class="st-circle circle3 box-shadow-j">再折毁</div>
+                    <div class="st-circle circle4 box-shadow-j">
+                        <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">今去故</span>
+                        <span
+                            style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">天下革</span>
+                    </div>
+                    <div class="st-circle circle5 box-shadow-j flash"></div>
+                </div>
+                <div class="outer-circle container3 box-shadow-j flip-card">
+                    <div class="outer-circle box-shadow-j">
+                        <div class="main-circle box-shadow-j">库</div>
+                        <div class="st-circle circle1 box-shadow-j">帑梁银</div>
+                        <div class="st-circle circle2 box-shadow-j flash"></div>
+                        <div class="st-circle circle3 box-shadow-j flash"></div>
+                        <div class="st-circle circle4 box-shadow-j flash"></div>
+                        <div class="st-circle circle5 box-shadow-j flash"></div>
+                    </div>
+                    <div class="outer-circle box-shadow-j card-back">悬藏不器道库性</div>
+                </div>
+            </div>
+            <div class="container container-s box-shadow-s">
+                <div class="outer-circle box-shadow-s"
+                    style="font-size: min(4vw, 4vh); left: calc(var(--five-circle) / 2 - var(--five-small-circle) / 2);top: calc(var(--five-circle) / 2 - var(--five-small-circle) / 2);">
+                    水</div>
+                <div class="outer-circle container1 box-shadow-s flip-card">
+                    <div class="outer-circle box-shadow-s">
+                        <div class="main-circle box-shadow-s">坎</div>
+                        <div class="st-circle circle1 box-shadow-s">
+                            <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">浩瀚海</span>
+                            <span
+                                style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">泾龙王</span>
+                        </div>
+                        <div class="st-circle circle2 box-shadow-s">溪上翁</div>
+                        <div class="st-circle circle3 box-shadow-s">长云暗</div>
+                        <div class="st-circle circle4 box-shadow-s">据岭中</div>
+                        <div class="st-circle circle5 box-shadow-s">恨江去</div>
+                    </div>
+                    <div class="outer-circle box-shadow-s card-back">甲子坎水千讷性</div>
+                </div>
+                <div class="outer-circle container2 box-shadow-s">
+                    <div class="main-circle box-shadow-s">府</div>
+                    <div class="st-circle circle1 box-shadow-s">朝寒雨</div>
+                    <div class="st-circle circle2 box-shadow-s">合黎渊</div>
+                    <div class="st-circle circle3 box-shadow-s">夜光府</div>
+                    <div class="st-circle circle4 box-shadow-s">宿穷冬</div>
+                    <div class="st-circle circle5 box-shadow-s flash"></div>
+                </div>
+
+                <div class="outer-circle container3 box-shadow-s flip-card">
+                    <div class="outer-circle box-shadow-s">
+                        <div class="main-circle box-shadow-s">渌</div>
+                        <div class="st-circle circle1 box-shadow-s">洞泉声</div>
+                        <div class="st-circle circle2 box-shadow-s">清夕雨</div>
+                        <div class="st-circle circle3 box-shadow-s">
+                            <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">如重浊</span>
+                            <span
+                                style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">天下覆</span>
+                        </div>
+                        <div class="st-circle circle4 box-shadow-s">丑癸藏</div>
+                        <div class="st-circle circle5 box-shadow-s">洗劫露</div>
+                    </div>
+                    <div class="outer-circle box-shadow-s card-back">渌水午元符语性</div>
+                </div>
+
+                <div class="outer-circle container4 box-shadow-s">
+                    <div class="main-circle box-shadow-s">牝</div>
+                    <div class="st-circle circle1 box-shadow-s">佞无晨</div>
+                    <div class="st-circle circle2 box-shadow-s">往生泉</div>
+                    <div class="st-circle circle3 box-shadow-s">谿谷会</div>
+                    <div class="st-circle circle4 box-shadow-s flash"></div>
+                    <div class="st-circle circle5 box-shadow-s flash"></div>
+                </div>
+
+                <div class="outer-circle container5 box-shadow-s">
+                    <div class="main-circle box-shadow-s">合</div>
+                    <div class="st-circle circle1 box-shadow-s">归流处</div>
+                    <div class="st-circle circle2 box-shadow-s flash"></div>
+                    <div class="st-circle circle3 box-shadow-s flash"></div>
+                    <div class="st-circle circle4 box-shadow-s flash"></div>
+                    <div class="st-circle circle5 box-shadow-s flash"></div>
+                </div>
+            </div>
+            <div class="container container-m box-shadow-m">
+                <div class="outer-circle box-shadow-m"
+                    style="font-size: min(4vw, 4vh); left: calc(var(--five-circle) / 2 - var(--five-small-circle) / 2);top: calc(var(--five-circle) / 2 - var(--five-small-circle) / 2);">
+                    木</div>
+                <div class="outer-circle container3 box-shadow-m">
+                    <div class="main-circle box-shadow-m">正</div>
+                    <div class="st-circle circle1 box-shadow-m">位从专</div>
+                    <div class="st-circle circle2 box-shadow-m">见查语</div>
+                    <div class="st-circle circle3 box-shadow-m">木成方</div>
+                    <div class="st-circle circle4 box-shadow-m">背南行</div>
+                    <div class="st-circle circle5 box-shadow-m flash"></div>
+                </div>
+                <div class="outer-circle container5 box-shadow-m">
+                    <div class="main-circle box-shadow-m">更</div>
+                    <div class="st-circle circle1 box-shadow-m">
+                        <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">病前春</span>
+                        <span
+                            style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">天下易</span>
+                    </div>
+                    <div class="st-circle circle2 box-shadow-m flash"></div>
+                    <div class="st-circle circle3 box-shadow-m flash"></div>
+                    <div class="st-circle circle4 box-shadow-m flash"></div>
+                    <div class="st-circle circle5 box-shadow-m flash"></div>
+                </div>
+                <div class="outer-circle container1 box-shadow-m">
+                    <div class="main-circle box-shadow-m">角</div>
+                    <div class="st-circle circle1 box-shadow-m">潇重林</div>
+                    <div class="st-circle circle2 box-shadow-m">余养性</div>
+                    <div class="st-circle circle3 box-shadow-m">黎运春</div>
+                    <div class="st-circle circle4 box-shadow-m flash"></div>
+                    <div class="st-circle circle5 box-shadow-m flash"></div>
+                </div>
+                <div class="outer-circle container4 box-shadow-m">
+                    <div class="main-circle box-shadow-m flash">保</div>
+                    <div class="st-circle circle1 box-shadow-m flash"></div>
+                    <div class="st-circle circle2 box-shadow-m flash"></div>
+                    <div class="st-circle circle3 box-shadow-m flash"></div>
+                    <div class="st-circle circle4 box-shadow-m flash"></div>
+                    <div class="st-circle circle5 box-shadow-m flash"></div>
+                </div>
+                <div class="outer-circle container2 box-shadow-m">
+                    <div class="main-circle box-shadow-m">集</div>
+                    <div class="st-circle circle1 box-shadow-m">隼就栖</div>
+                    <div class="st-circle circle2 box-shadow-m">祸延生</div>
+                    <div class="st-circle circle3 box-shadow-m flash"></div>
+                    <div class="st-circle circle4 box-shadow-m flash"></div>
+                    <div class="st-circle circle5 box-shadow-m flash"></div>
+                </div>
+            </div>
+            <div class="container container-h box-shadow-h">
+                <div class="outer-circle box-shadow-h"
+                    style="font-size: min(4vw, 4vh); left: calc(var(--five-circle) / 2 - var(--five-small-circle) / 2);top: calc(var(--five-circle) / 2 - var(--five-small-circle) / 2);">
+                    火</div>
+                <div class="outer-circle container3 box-shadow-h">
+                    <div class="main-circle box-shadow-h">离</div>
+                    <div class="st-circle circle1 box-shadow-h">
+                        <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">大离书</span>
+                        <span
+                            style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">望日述</span>
+                    </div>
+                    <div class="st-circle circle2 box-shadow-h">九重擭</div>
+                    <div class="st-circle circle3 box-shadow-h">位从罗</div>
+                    <div class="st-circle circle4 box-shadow-h">折焚尽</div>
+                    <div class="st-circle circle5 box-shadow-h">顺平征</div>
+                </div>
+                <div class="outer-circle container2 box-shadow-h">
+                    <div class="main-circle box-shadow-h">真</div>
+                    <div class="st-circle circle1 box-shadow-h">雉离行</div>
+                    <div class="st-circle circle2 box-shadow-h">天兜火</div>
+                    <div class="st-circle circle3 box-shadow-h flash"></div>
+                    <div class="st-circle circle4 box-shadow-h flash"></div>
+                    <div class="st-circle circle5 box-shadow-h flash"></div>
+                </div>
+                <div class="outer-circle container5 box-shadow-h">
+                    <div class="main-circle box-shadow-h">牡</div>
+                    <div class="st-circle circle1 box-shadow-h">牡煞火</div>
+                    <div class="st-circle circle2 box-shadow-h flash"></div>
+                    <div class="st-circle circle3 box-shadow-h flash"></div>
+                    <div class="st-circle circle4 box-shadow-h flash"></div>
+                    <div class="st-circle circle5 box-shadow-h flash"></div>
+                </div>
+                <div class="outer-circle container1 box-shadow-h">
+                    <div class="main-circle box-shadow-h">灴</div>
+                    <div class="st-circle circle1 box-shadow-h">白樆心</div>
+                    <div class="st-circle circle2 box-shadow-h">
+                        <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">燔旧室</span>
+                        <span
+                            style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">天下熯</span>
+                    </div>
+                    <div class="st-circle circle3 box-shadow-h flash"></div>
+                    <div class="st-circle circle4 box-shadow-h flash"></div>
+                    <div class="st-circle circle5 box-shadow-h flash"></div>
+                </div>
+                <div class="outer-circle container4 box-shadow-h">
+                    <div class="main-circle box-shadow-h">并</div>
+                    <div class="st-circle circle1 box-shadow-h">心期焚</div>
+                    <div class="st-circle circle2 box-shadow-h">乌从欲</div>
+                    <div class="st-circle circle3 box-shadow-h">焰中乌</div>
+                    <div class="st-circle circle4 box-shadow-h">兼险夺</div>
+                    <div class="st-circle circle5 box-shadow-h flash"></div>
+                </div>
+            </div>
+            <div class="container container-t box-shadow-t">
+                <div class="outer-circle box-shadow-t"
+                    style="font-size: min(4vw, 4vh); left: calc(var(--five-circle) / 2 - var(--five-small-circle) / 2);top: calc(var(--five-circle) / 2 - var(--five-small-circle) / 2);">
+                    土</div>
+                <div class="outer-circle container-tu-5 box-shadow-t">
+                    <div class="main-circle box-shadow-t">艮</div>
+                    <div class="st-circle circle1 box-shadow-t">愚赶山</div>
+                    <div class="st-circle circle2 box-shadow-t ">正源谷</div>
+                    <div class="st-circle circle3 box-shadow-t flash"></div>
+                    <div class="st-circle circle4 box-shadow-t flash"></div>
+                    <div class="st-circle circle5 box-shadow-t flash"></div>
+                </div>
+                <div class="outer-circle container-tu-1 box-shadow-t">
+                    <div class="main-circle box-shadow-t">戊</div>
+                    <div class="st-circle circle1 box-shadow-t">受抚顶</div>
+                    <div class="st-circle circle2 box-shadow-t">戊心岩</div>
+                    <div class="st-circle circle3 box-shadow-t">仙无漏</div>
+                    <div class="st-circle circle4 box-shadow-t flash"></div>
+                    <div class="st-circle circle5 box-shadow-t flash"></div>
+                </div>
+                <div class="outer-circle container-tu-4 box-shadow-t">
+                    <div class="main-circle box-shadow-t">宝</div>
+                    <div class="st-circle circle1 box-shadow-t">藏纳宫</div>
+                    <div class="st-circle circle2 box-shadow-t">高垒燕</div>
+                    <div class="st-circle circle3 box-shadow-t">膏泽治</div>
+                    <div class="st-circle circle4 box-shadow-t flash"></div>
+                    <div class="st-circle circle5 box-shadow-t flash"></div>
+                </div>
+                <div class="outer-circle container-tu-3 box-shadow-t">
+                    <div class="main-circle box-shadow-t">宣</div>
+                    <div class="st-circle circle1 box-shadow-t">
+                        <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">朝社参</span>
+                        <span
+                            style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">天下心</span>
+                    </div>
+                    <div class="st-circle circle2 box-shadow-t flash"></div>
+                    <div class="st-circle circle3 box-shadow-t flash"></div>
+                    <div class="st-circle circle4 box-shadow-t flash"></div>
+                    <div class="st-circle circle5 box-shadow-t flash"></div>
+                </div>
+                <div class="outer-circle container-tu-2 box-shadow-t flip-card">
+                    <div class="outer-circle box-shadow-t">
+                        <div class="main-circle box-shadow-t">青宣</div>
+                        <div class="st-circle circle1 box-shadow-t">玄羊子</div>
+                        <div class="st-circle circle2 box-shadow-t">青宣岳</div>
+                        <div class="st-circle circle3 box-shadow-t">伏青山</div>
+                        <div class="st-circle circle4 box-shadow-t">上岩神</div>
+                        <div class="st-circle circle5 box-shadow-t">观地冥</div>
+                    </div>
+                    <div class="outer-circle box-shadow-t card-back">青堰神岳伏元性</div>
+                </div>
+                <div class="outer-circle container-tu-6 box-shadow-t">
+                    <div class="main-circle box-shadow-t">归</div>
+                    <div class="st-circle circle1 box-shadow-t">狡落原</div>
+                    <div class="st-circle circle2 box-shadow-t flash"></div>
+                    <div class="st-circle circle3 box-shadow-t flash"></div>
+                    <div class="st-circle circle4 box-shadow-t flash"></div>
+                    <div class="st-circle circle5 box-shadow-t flash"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="big-container big-3">
+            <div class="mid-circle mid-circle-0">炁</div>
+            <div class="mid-circle mid-circle-1">
+                <div class="small-circle small-circle-0">寒</div>
+                <div class="small-circle small-circle-1">松上雪</div>
+                <div class="small-circle small-circle-2">入清听</div>
+                <div class="small-circle small-circle-3">祢水寒</div>
+                <div class="small-circle small-circle-4">沆砀满</div>
+                <div class="small-circle small-circle-5 flash"></div>
+            </div>
+
+            <div class="mid-circle mid-circle-2 flip-card">
+                <div class="mid-circle">
+                    <div class="small-circle small-circle-0">邃</div>
+                    <div class="small-circle small-circle-1 flash"></div>
+                    <div class="small-circle small-circle-2">代行妨</div>
+                    <div class="small-circle small-circle-3">闇天殃</div>
+                    <div class="small-circle small-circle-4 flash"></div>
+                    <div class="small-circle small-circle-5 flash"></div>
+                </div>
+                <div class="mid-circle card-back">天成邃炁窣玄性</div>
+            </div>
+
+            <div class="mid-circle mid-circle-3">
+                <div class="small-circle small-circle-0">华</div>
+                <div class="small-circle small-circle-1 flash"></div>
+                <div class="small-circle small-circle-2">冠灵旒</div>
+                <div class="small-circle small-circle-3 flash"></div>
+                <div class="small-circle small-circle-4 flash"></div>
+                <div class="small-circle small-circle-5 flash"></div>
+            </div>
+
+            <div class="mid-circle mid-circle-4">
+                <div class="small-circle small-circle-0">晞</div>
+                <div class="small-circle small-circle-1 ">
+                    <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">未阙华</span>
+                    <span
+                        style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">焜煌复</span>
+                </div>
+                <div class="small-circle small-circle-2">乞代夜</div>
+                <div class="small-circle small-circle-3">郁燠苦</div>
+                <div class="small-circle small-circle-4">庆垂轩</div>
+                <div class="small-circle small-circle-5 flash"></div>
+            </div>
+
+            <div class="mid-circle mid-circle-5 flip-card box-shadow-zi">
+                <div class="mid-circle box-shadow-zi">
+                    <div class="small-circle small-circle-0 box-shadow-zi">紫</div>
+                    <div class="small-circle small-circle-1 box-shadow-zi">绕东山</div>
+                    <div class="small-circle small-circle-2 box-shadow-zi flash"></div>
+                    <div class="small-circle small-circle-3 box-shadow-zi flash"></div>
+                    <div class="small-circle small-circle-4 box-shadow-zi flash"></div>
+                    <div class="small-circle small-circle-5 box-shadow-zi flash"></div>
+                </div>
+                <div class="mid-circle box-shadow-zi card-back">天修紫炁仙元性</div>
+            </div>
+
+            <div class="mid-circle mid-circle-6 flip-card">
+                <div class="mid-circle">
+                    <div class="small-circle small-circle-0">真</div>
+                    <div class="small-circle small-circle-1">抱石眠</div>
+                    <div class="small-circle small-circle-2 flash"></div>
+                    <div class="small-circle small-circle-3 flash"></div>
+                    <div class="small-circle small-circle-4 flash"></div>
+                    <div class="small-circle small-circle-5 flash"></div>
+                </div>
+                <div class="mid-circle card-back">天武真炁神煞性</div>
+            </div>
+
+            <div class="mid-circle mid-circle-7">
+                <div class="small-circle small-circle-0">瑞</div>
+                <div class="small-circle small-circle-1">好功禄</div>
+                <div class="small-circle small-circle-2">瑞气云</div>
+                <div class="small-circle small-circle-3 flash"></div>
+                <div class="small-circle small-circle-4 flash"></div>
+                <div class="small-circle small-circle-5 flash"></div>
+            </div>
+
+            <div class="mid-circle mid-circle-8">
+                <div class="small-circle small-circle-0 flash">谪</div>
+                <div class="small-circle small-circle-1 flash"></div>
+                <div class="small-circle small-circle-2 flash"></div>
+                <div class="small-circle small-circle-3 flash"></div>
+                <div class="small-circle small-circle-4 flash"></div>
+                <div class="small-circle small-circle-5 flash"></div>
+            </div>
+
+            <div class="mid-circle mid-circle-9">
+                <div class="small-circle small-circle-0">煞</div>
+                <div class="small-circle small-circle-1">罗刹海</div>
+                <div class="small-circle small-circle-2">不空劫</div>
+                <div class="small-circle small-circle-3">
+                    <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">箝恨口</span>
+                    <span
+                        style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">千百身</span>
+                </div>
+                <div class="small-circle small-circle-4 flash"></div>
+                <div class="small-circle small-circle-5 flash"></div>
+            </div>
+
+            <div class="mid-circle mid-circle-10">
+                <div class="small-circle small-circle-0">上仪</div>
+                <div class="small-circle small-circle-1">明心筵</div>
+                <div class="small-circle small-circle-2">致缉熙</div>
+                <div class="small-circle small-circle-3 flash"></div>
+                <div class="small-circle small-circle-4 flash"></div>
+                <div class="small-circle small-circle-5 flash"></div>
+            </div>
+
+            <div class="mid-circle mid-circle-11">
+                <div class="small-circle small-circle-0">清</div>
+                <div class="small-circle small-circle-1">清元风</div>
+                <div class="small-circle small-circle-2 flash"></div>
+                <div class="small-circle small-circle-3 flash"></div>
+                <div class="small-circle small-circle-4 flash"></div>
+                <div class="small-circle small-circle-5 flash"></div>
+            </div>
+
+            <div class="mid-circle mid-circle-12">
+                <div class="small-circle small-circle-0 flash">下仪</div>
+                <div class="small-circle small-circle-1 flash"></div>
+                <div class="small-circle small-circle-2 flash"></div>
+                <div class="small-circle small-circle-3 flash"></div>
+                <div class="small-circle small-circle-4 flash"></div>
+                <div class="small-circle small-circle-5 flash"></div>
+            </div>
+        </div>
+
+        <div class="big-container big-4">
+            <div class="mid-circle mid-circle-0">并古</div>
+            <div class="mid-circle mid-circle-1">
+                <div class="small-circle small-circle-0">都卫</div>
+                <div class="small-circle small-circle-1">东羽山</div>
+                <div class="small-circle small-circle-2">西天塬</div>
+                <div class="small-circle small-circle-3">南惆水</div>
+                <div class="small-circle small-circle-4">北漠庭</div>
+                <div class="small-circle small-circle-5">降魂闻</div>
+            </div>
+
+            <div class="mid-circle mid-circle-2">
+                <div class="small-circle small-circle-0">司天</div>
+                <div class="small-circle small-circle-1">听醒辰</div>
+                <div class="small-circle small-circle-2">
+                    <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">居南衡</span>
+                    <span
+                        style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">斗衡玄</span>
+                </div>
+                <div class="small-circle small-circle-3">神布序</div>
+                <div class="small-circle small-circle-4 flash"></div>
+                <div class="small-circle small-circle-5 flash"></div>
+            </div>
+
+            <div class="mid-circle mid-circle-3">
+                <div class="small-circle small-circle-0">修越</div>
+                <div class="small-circle small-circle-1 flash"></div>
+                <div class="small-circle small-circle-2 flash"></div>
+                <div class="small-circle small-circle-3 flash"></div>
+                <div class="small-circle small-circle-4">相离绝</div>
+                <div class="small-circle small-circle-5">形渡阡</div>
+            </div>
+
+            <div class="mid-circle mid-circle-4">
+                <div class="small-circle small-circle-0">全丹</div>
+                <div class="small-circle small-circle-1">候神殊</div>
+                <div class="small-circle small-circle-2">秘白汞</div>
+                <div class="small-circle small-circle-3">浥铅华</div>
+                <div class="small-circle small-circle-4 flash"></div>
+                <div class="small-circle small-circle-5 flash"></div>
+            </div>
+
+            <div class="mid-circle mid-circle-5 flip-card">
+                <div class="mid-circle">
+                    <div class="small-circle small-circle-0">上巫</div>
+                    <div class="small-circle small-circle-1">槐荫鬼</div>
+                    <div class="small-circle small-circle-2">饮民血</div>
+                    <div class="small-circle small-circle-3">地巫祝</div>
+                    <div class="small-circle small-circle-4">勿查我</div>
+                    <div class="small-circle small-circle-5">应帝王</div>
+                </div>
+                <div class="mid-circle card-back">上巫三九荷血性</div>
+            </div>
+
+            <div class="mid-circle mid-circle-6 flip-card">
+                <div class="mid-circle">
+                    <div class="small-circle small-circle-0">玉真</div>
+                    <div class="small-circle small-circle-1">
+                        <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">玉庭将</span>
+                        <span
+                            style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">玉中人</span>
+                    </div>
+                    <div class="small-circle small-circle-2">青玉崖</div>
+                    <div class="small-circle small-circle-3">白玉盘</div>
+                    <div class="small-circle small-circle-4">间道锦</div>
+                    <div class="small-circle small-circle-5">道合真</div>
+                </div>
+                <div class="mid-circle card-back">玉真六九合虚性</div>
+            </div>
+
+            <div class="mid-circle mid-circle-7">
+                <div class="small-circle small-circle-0">衡祝</div>
+                <div class="small-circle small-circle-1">殿阳虎</div>
+                <div class="small-circle small-circle-2 flash"></div>
+                <div class="small-circle small-circle-3 flash"></div>
+                <div class="small-circle small-circle-4 flash"></div>
+                <div class="small-circle small-circle-5 flash"></div>
+            </div>
+
+
+
+            <div class="mid-circle mid-circle-9">
+                <div class="small-circle small-circle-0 flash">身夔</div>
+                <div class="small-circle small-circle-1 flash"></div>
+                <div class="small-circle small-circle-2 flash"></div>
+                <div class="small-circle small-circle-3 flash"></div>
+                <div class="small-circle small-circle-4 flash"></div>
+                <div class="small-circle small-circle-5 flash"></div>
+            </div>
+
+
+
+            <div class="mid-circle mid-circle-11 flip-card">
+                <div class="mid-circle">
+                    <div class="small-circle small-circle-0">并鸺</div>
+                    <div class="small-circle small-circle-1">飓鬼阴</div>
+                    <div class="small-circle small-circle-2">枭逐狸</div>
+                    <div class="small-circle small-circle-3 flash"></div>
+                    <div class="small-circle small-circle-4 flash"></div>
+                    <div class="small-circle small-circle-5 flash"></div>
+                </div>
+                <div class="mid-circle card-back">并鸺一九--性</div>
+            </div>
+        </div>
+
+        <div class="big-container big-5">
+            <div class="mid-circle mid-circle-0">
+                <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">蕴宝瓶</span>
+                <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">杨宵儿</span>
+            </div>
+            <div class="mid-circle mid-circle-1">
+                <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">墓门棘</span>
+                <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">元乌</span>
+                
+            </div>
+
+            <div class="mid-circle mid-circle-2">
+                <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">梭摩岭</span>
+                <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">魔修</span>
+                
+            </div>
+
+            <div class="mid-circle mid-circle-3">
+                <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">掩尘雾</span>
+                <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">芒花子</span>
+                
+            </div>
+
+            <div class="mid-circle mid-circle-4">
+                <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">空应散</span>
+                <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">司勋会</span>
+                
+            </div>
+
+            <div class="mid-circle mid-circle-5">
+                <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">朱丹参</span>
+                <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">萧元思</span>
+                
+            </div>
+
+            <div class="mid-circle mid-circle-6">
+                <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">雾回阴</span>
+                <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;"></span>
+                
+            </div>
+
+            <div class="mid-circle mid-circle-7">
+                <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">浮云身</span>
+                <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">王渠绾</span>
+               
+            </div>
+
+            <div class="mid-circle mid-circle-8">
+                <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">木凭春</span>
+                <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">孚斗</span>
+                
+            </div>
+
+            <div class="mid-circle mid-circle-9">
+                <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">定元春</span>
+                <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">袁护独</span>
+                
+            </div>
+
+            <div class="mid-circle mid-circle-10">
+                <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">炁引池</span>
+                <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">澹台慕明</span>
+                
+            </div>
+
+            <div class="mid-circle mid-circle-11">
+                <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">戊心岩</span>
+                <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;">袁护鳄</span>
+                
+            </div>
+
+            <div class="mid-circle mid-circle-12">
+                <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;">乙木全</span>
+                <span style="position: absolute;opacity: 0;animation: text-fade 4s infinite;animation-delay: 2s;"></span>
+                
+            </div>
+        </div>
+
+    </div>
+
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const faces = document.querySelectorAll('.big-container');
+        let currentFaceIndex = 0;
+
+        function showNextFace() {
+            // Hide the current face
+            faces[currentFaceIndex].style.display = 'none';
+
+            // Move to the next face, wrapping around if necessary
+            currentFaceIndex = (currentFaceIndex + 1) % faces.length;
+
+            // Show the next face
+            faces[currentFaceIndex].style.display = 'block';
+        }
+
+        document.querySelector('.all-container').addEventListener('click', showNextFace);
+    });
+
+</script>
+
+</html>
